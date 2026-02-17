@@ -1,0 +1,113 @@
+.nature-page {
+    padding-bottom: 2rem;
+}
+
+.nature-header {
+    background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    color: #2e7d32;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.nature-header h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.nature-header p {
+    font-size: 1.2rem;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.section-container {
+    margin-bottom: 3rem;
+}
+
+.section-container h2 {
+    color: #00695c;
+    border-bottom: 3px solid #b2dfdb;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+/* Colorful District Tags */
+.districts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.district-tag {
+    background-color: #e0f2f1;
+    color: #004d40;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, background-color 0.2s;
+    cursor: default;
+}
+
+.district-tag:nth-child(3n+1) {
+    background-color: #ffe0b2;
+    color: #e65100;
+}
+
+.district-tag:nth-child(3n+2) {
+    background-color: #e1bee7;
+    color: #4a148c;
+}
+
+.district-tag:nth-child(3n+3) {
+    background-color: #b2dfdb;
+    color: #004d40;
+}
+
+.district-tag:hover {
+    transform: translateY(-3px);
+    filter: brightness(0.95);
+}
+
+.climate-box {
+    background-color: #fff3e0;
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px dashed #ffb74d;
+}
+
+.landmarks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.map-illustration {
+    margin-top: 2rem;
+    text-align: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-illustration img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #e0f2f1;
+}
+
+.map-illustration .caption {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #00796b;
+    font-size: 0.9rem;
+}

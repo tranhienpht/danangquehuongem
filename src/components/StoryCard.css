@@ -1,0 +1,48 @@
+.story-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.story-image {
+    height: 200px;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.story-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.story-card:hover .story-image img {
+    transform: scale(1.1);
+}
+
+.story-content {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.role-badge {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.story-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}

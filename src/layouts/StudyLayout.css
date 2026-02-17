@@ -1,0 +1,25 @@
+.study-layout {
+    display: flex;
+    flex: 1;
+    background-color: #fdfbf7;
+}
+
+.study-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 20px 0 0 0;
+    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.02);
+    min-height: calc(100vh - 100px);
+}
+
+@media (max-width: 768px) {
+    .study-layout {
+        flex-direction: column;
+    }
+
+    .study-content {
+        border-radius: 0;
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,93 @@
+:root {
+  --primary-color: #00897b;
+  /* Teal 600 */
+  --secondary-color: #ffb74d;
+  /* Orange 300 - fun accent */
+  --background-color: #f0f4c3;
+  /* Lime 100 - soft background */
+  --text-color: #37474f;
+  /* Blue Grey 800 */
+  --header-height: 80px;
+  --font-family: 'Segoe UI', 'Roboto', sans-serif;
+  /* Clean, standard fonts */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: #fff9c4;
+  /* Very light yellow for warmth */
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.page-header h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+h1,
+h2,
+h3 {
+  color: #00695c;
+  /* Darker teal for headings */
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-container,
+.feature-card,
+.sidebar-item {
+  animation: fadeIn 0.5s ease-out forwards;
+}

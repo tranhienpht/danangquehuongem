@@ -1,0 +1,96 @@
+/* AiAssistant.css */
+.ai-assistant-wrapper {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.ai-assistant-wrapper:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+.ai-robot-container {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #00897b, #4db6ac);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 137, 123, 0.4),
+        0 0 0 4px rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.ai-assistant-wrapper:hover .ai-robot-container {
+    box-shadow: 0 8px 25px rgba(0, 137, 123, 0.6),
+        0 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+.robot-head {
+    color: white;
+    z-index: 2;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+.robot-sparkles {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    color: #ffb74d;
+    animation: sparkle 2s infinite;
+}
+
+.ai-tooltip {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    color: #00897b;
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.ai-assistant-wrapper:hover .ai-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}

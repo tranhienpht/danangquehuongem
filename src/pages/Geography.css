@@ -1,0 +1,56 @@
+.geography-header {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+}
+
+.geography-header h1 {
+    color: #155724;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.districts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.district-tag {
+    background-color: #e2e6ea;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: bold;
+    color: #495057;
+    cursor: default;
+    transition: background-color 0.2s;
+}
+
+.district-tag:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.landmarks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.climate-box {
+    background-color: #fff3cd;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 5px solid #ffc107;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.climate-box p {
+    font-size: 1.1rem;
+    margin: 1rem 0;
+}

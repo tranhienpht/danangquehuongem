@@ -1,0 +1,45 @@
+.page-header {
+    background-color: #e9ecef;
+    padding: 3rem 1rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.history-header {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+}
+
+.history-header h1 {
+    color: #856404;
+}
+
+.section-container {
+    margin-bottom: 4rem;
+}
+
+.section-container h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.figures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}

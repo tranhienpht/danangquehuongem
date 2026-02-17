@@ -1,0 +1,7 @@
+.quiz-header {
+    background: linear-gradient(135deg, #e0faff 0%, #c6e9f3 100%);
+}
+
+.quiz-header h1 {
+    color: #0c5460;
+}
