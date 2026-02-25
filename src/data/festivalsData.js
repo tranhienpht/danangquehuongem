@@ -14,7 +14,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_quan_the_am_1.jpg",
+                    src: "images/festivals/le_hoi_quan_the_am_1.jpg",
                     alt: "Chùa Quán Thế Âm và khu danh thắng Ngũ Hành Sơn",
                     caption: "Toàn cảnh Lễ hội Quán Thế Âm - Ngũ Hành Sơn"
                 },
@@ -24,7 +24,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_quan_the_am_2.jpg",
+                    src: "images/festivals/le_hoi_quan_the_am_2.jpg",
                     alt: "Người dân và du khách tham gia lễ hội",
                     caption: "Đông đảo người dân và du khách thập phương về dự lễ"
                 },
@@ -34,7 +34,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_quan_the_am_3.jpg",
+                    src: "images/festivals/le_hoi_quan_the_am_3.jpg",
                     alt: "Rước tôn tượng Quán Thế Âm",
                     caption: "Nghi thức rước tôn tượng Quán Thế Âm trang nghiêm"
                 },
@@ -44,7 +44,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_quan_the_am_4.jpg",
+                    src: "images/festivals/le_hoi_quan_the_am_4.jpg",
                     alt: "Hoạt động hội và trò chơi dân gian",
                     caption: "Đua thuyền truyền thống trên sông Cổ Cò"
                 },
@@ -68,7 +68,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_cau_ngu 1.jpg",
+                    src: "images/festivals/le_hoi_cau_ngu 1.jpg",
                     alt: "Lễ hội Cầu Ngư tại các làng chài ven biển Đà Nẵng",
                     caption: "Lễ hội Cầu Ngư tại các làng chài ven biển Đà Nẵng"
                 },
@@ -78,7 +78,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_cau_ngu 2.jpg",
+                    src: "images/festivals/le_hoi_cau_ngu 2.jpg",
                     alt: "Ngư dân thực hiện nghi lễ truyền thống",
                     caption: "Ngư dân thực hiện nghi lễ truyền thống"
                 },
@@ -88,7 +88,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_cau_ngu 3.jpg",
+                    src: "images/festivals/le_hoi_cau_ngu 3.jpg",
                     alt: "Lễ nghinh Ông và nghi thức tế lễ",
                     caption: "Lễ nghinh Ông và nghi thức tế lễ trang nghiêm"
                 },
@@ -98,7 +98,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_cau_ngu 4.jpg",
+                    src: "images/festivals/le_hoi_cau_ngu 4.jpg",
                     alt: "Hát bả trạo và các hoạt động hội",
                     caption: "Hát bả trạo - Nét văn hóa đặc sắc trong phần Hội"
                 },
@@ -124,7 +124,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le-hoi-ba-phuong-chao1.jpg",
+                    src: "images/festivals/le-hoi-ba-phuong-chao1.jpg",
                     alt: "Đình, miếu thờ Bà Chào và không gian lễ hội",
                     caption: "Đình, miếu thờ Bà Chào và không gian lễ hội trang nghiêm"
                 },
@@ -134,7 +134,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le-hoi-ba-phuong-chao-2.jpg",
+                    src: "images/festivals/le-hoi-ba-phuong-chao-2.jpg",
                     alt: "Người dân dâng hương, tham gia lễ hội",
                     caption: "Đông đảo người dân dâng hương và tham gia lễ hội"
                 },
@@ -144,7 +144,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le-hoi-ba-phuong-chao-3.jpg",
+                    src: "images/festivals/le-hoi-ba-phuong-chao-3.jpg",
                     alt: "Nghi thức dâng hương và lễ tế",
                     caption: "Nghi thức dâng hương và lễ tế trang trọng"
                 },
@@ -154,7 +154,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le-hoi-ba-phuong-chao-4.jpg",
+                    src: "images/festivals/le-hoi-ba-phuong-chao-4.jpg",
                     alt: "Các hoạt động văn nghệ và trò chơi dân gian",
                     caption: "Các hoạt động văn nghệ và trò chơi dân gian sôi nổi"
                 },
@@ -178,7 +178,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le-hoi-cau-bong1.jpg",
+                    src: "images/festivals/le-hoi-cau-bong1.jpg",
                     alt: "Không gian lễ hội Cầu Bông tại làng quê",
                     caption: "Không gian lễ hội Cầu Bông tại làng quê trang nghiêm, đầm ấm"
                 },
@@ -188,7 +188,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le-hoi-cau-bong 2.jpg",
+                    src: "images/festivals/le-hoi-cau-bong 2.jpg",
                     alt: "Người dân tham gia lễ cầu mùa",
                     caption: "Người dân thành kính tham gia nghi lễ cầu mùa"
                 },
@@ -198,7 +198,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le-hoi-cau-bong3.jpg",
+                    src: "images/festivals/le-hoi-cau-bong3.jpg",
                     alt: "Nghi thức dâng lễ trong lễ hội",
                     caption: "Nghi thức dâng lễ vật cúng thần nông"
                 },
@@ -208,7 +208,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le-hoi-cau-bong 4.jpg",
+                    src: "images/festivals/le-hoi-cau-bong 4.jpg",
                     alt: "Các hoạt động văn nghệ và trò chơi dân gian",
                     caption: "Các hoạt động văn nghệ và trò chơi dân gian sôi nổi"
                 },
@@ -234,7 +234,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_ba_thu_bon 1.jpg",
+                    src: "images/festivals/le_hoi_ba_thu_bon 1.jpg",
                     alt: "Đền thờ Bà Thu Bồn và dòng sông Thu Bồn",
                     caption: "Đền thờ Bà Thu Bồn uy nghiêm bên dòng sông thơ mộng"
                 },
@@ -244,7 +244,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_ba_thu_bon 2.jpg",
+                    src: "images/festivals/le_hoi_ba_thu_bon 2.jpg",
                     alt: "Người dân dâng lễ và tham gia lễ hội",
                     caption: "Người dân thành kính dâng lễ vật lên Bà"
                 },
@@ -254,7 +254,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/Le-hoi-Ba-Thu-Bon-3.jpg",
+                    src: "images/festivals/Le-hoi-Ba-Thu-Bon-3.jpg",
                     alt: "Nghi lễ tế Bà Thu Bồn",
                     caption: "Nghi thức tế lễ Bà Thu Bồn trang trọng"
                 },
@@ -264,7 +264,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_ba_thu_bon 4.jpg",
+                    src: "images/festivals/le_hoi_ba_thu_bon 4.jpg",
                     alt: "Các hoạt động hội và sinh hoạt cộng đồng",
                     caption: "Không khí lễ hội rộn ràng, vui tươi với các trò chơi dân gian"
                 },
@@ -288,7 +288,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_ba_chiem_son 1.jpg",
+                    src: "images/festivals/le_hoi_ba_chiem_son 1.jpg",
                     alt: "Miếu thờ Bà Chiêm Sơn và không gian lễ hội",
                     caption: "Miếu thờ Bà Chiêm Sơn uy nghiêm, cổ kính"
                 },
@@ -298,7 +298,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_ba_chiem_son 2.jpg",
+                    src: "images/festivals/le_hoi_ba_chiem_son 2.jpg",
                     alt: "Người dân tham gia dâng hương, cầu an",
                     caption: "Đông đảo người dân dâng hương cầu an, cầu phúc"
                 },
@@ -308,7 +308,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_ba_chiem_son 3.jpg",
+                    src: "images/festivals/le_hoi_ba_chiem_son 3.jpg",
                     alt: "Nghi thức tế lễ tại miếu Bà Chiêm Sơn",
                     caption: "Nghi thức tế lễ trang nghiêm tại miếu Bà"
                 },
@@ -318,7 +318,7 @@ export const festivalsData = {
                 },
                 {
                     type: "image",
-                    src: "/images/festivals/le_hoi_ba_chiem_son 4.jpg",
+                    src: "images/festivals/le_hoi_ba_chiem_son 4.jpg",
                     alt: "Các hoạt động hội và trò chơi dân gian",
                     caption: "Hoạt động hội rộn ràng với các trò chơi dân gian"
                 },
