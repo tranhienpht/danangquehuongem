@@ -1,0 +1,139 @@
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(234, 179, 8, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(234, 179, 8, 0.8);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes timer-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.quiz-lehoi-app .float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+.quiz-lehoi-app .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.quiz-lehoi-app .shake-animation {
+    animation: shake 0.5s ease-in-out;
+}
+
+.quiz-lehoi-app .bounce-in {
+    animation: bounce-in 0.5s ease-out forwards;
+}
+
+.quiz-lehoi-app .slide-up {
+    animation: slide-up 0.4s ease-out forwards;
+}
+
+.quiz-lehoi-app .timer-warning {
+    animation: timer-pulse 0.5s ease-in-out infinite;
+}
+
+.quiz-lehoi-app .option-btn {
+    transition: all 0.3s ease;
+}
+
+.quiz-lehoi-app .option-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-lehoi-app .option-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.quiz-lehoi-app .progress-bar {
+    transition: width 0.3s ease;
+}
+
+.quiz-lehoi-app .lantern {
+    filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.6));
+}
+
+.quiz-lehoi-app,
+.quiz-lehoi-app .gradient-bg {
+    background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+    min-height: 100vh;
+    font-family: 'Nunito', sans-serif;
+}
+
+.quiz-lehoi-app .card-gradient {
+    background: linear-gradient(145deg, #ffffff 0%, #fef9c3 100%);
+}
+
+.quiz-lehoi-app .title-font {
+    font-family: 'Baloo 2', cursive;
+}

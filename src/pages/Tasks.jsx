@@ -3,6 +3,7 @@ import { missions } from '../data/missionsData';
 import './Tasks.css';
 import confetti from 'canvas-confetti';
 import { ArrowLeft, Clock, CheckCircle, ChevronRight, Lock } from 'lucide-react';
+import QuizLeHoi from '../components/QuizLeHoi';
 
 const Tasks = () => {
     const [unlockedLevel, setUnlockedLevel] = useState(1);
@@ -197,6 +198,11 @@ const Tasks = () => {
 
     // 1. GAME VIEW (Quiz + Result)
     if (playingMission) {
+        // Special case for Mission 2 (Lễ Hội Xứ Quảng)
+        if (playingMission.id === 2) {
+            return <QuizLeHoi onBack={handleBackToHub} />;
+        }
+
         if (showResult) {
             // RESULT SCREEN
             const passed = score >= (playingMission.passScore || 8);
