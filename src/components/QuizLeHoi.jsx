@@ -190,19 +190,19 @@ const QuizLeHoi = ({ onBack }) => {
     return (
         <div className="quiz-lehoi-app">
             {screen === 'home' && (
-                <div className="home-screen min-h-screen relative overflow-hidden" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', paddingTop: '2.5rem' }}>
-                    <div className="mb-6 flex-col-center">
-                        <img src="https://raw.githubusercontent.com/tranhienpht/danangquehuongem/main/public/images/food-illustration.png" alt="food" className="w-32 mb-4" onError={(e) => { e.target.style.display = 'none'; }} />
-                        <div style={{ display: 'flex', gap: '1rem' }}>
+                <div className="home-screen">
+                    <div className="flex-col-center mb-6">
+                        <img src="https://raw.githubusercontent.com/tranhienpht/danangquehuongem/main/public/images/food-illustration.png" alt="food" className="hero-img" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <div className="emoji-row">
                             <span className="text-3xl">🥢</span><span className="text-3xl">🍲</span><span className="text-3xl">🥗</span><span className="text-3xl">🍚</span><span className="text-3xl">🌰</span>
                         </div>
                     </div>
 
                     <h1 className="title-font text-5xl-responsive font-extrabold text-center mb-4 quiz-title-color">Khám Phá Ẩm Thực Đà Nẵng Quảng Nam</h1>
-                    <p className="text-center font-semibold mb-10 text-xl max-w-2xl px-4 quiz-subtitle-color">Cùng khám phá những món ăn đặc sản tuyệt vời của vùng đất miền Trung qua 10 câu hỏi thú vị! 🌟</p>
+                    <p className="text-center font-semibold mb-10 text-xl subtitle-text quiz-subtitle-color">Cùng khám phá những món ăn đặc sản tuyệt vời của vùng đất miền Trung qua 10 câu hỏi thú vị! 🌟</p>
 
-                    <div className="quiz-card-main rounded-[2rem] p-8 max-w-3xl w-full shadow-lg border-light z-10 mx-auto">
-                        <div className="flex-around flex-wrap mb-8 gap-y-6">
+                    <div className="quiz-card-main">
+                        <div className="flex-around">
                             <div className="text-center flex-1">
                                 <span className="text-4xl mb-2">📝</span>
                                 <p className="font-extrabold text-3xl quiz-stat-val">10</p>
@@ -221,8 +221,8 @@ const QuizLeHoi = ({ onBack }) => {
                         </div>
 
                         <div className="quiz-rules-box">
-                            <h3 className="font-bold text-xl mb-4 flex-center gap-2"><span>📜</span> Luật chơi:</h3>
-                            <ul className="text-base space-y-2 text-center list-none pl-0 mb-0">
+                            <h3 className="flex-center"><span className="rule-icon">📜</span> Luật chơi:</h3>
+                            <ul>
                                 <li>✨ Mỗi câu đúng được +1 điểm</li>
                                 <li>🎆 Trả lời đúng có hiệu ứng pháo hoa</li>
                                 <li>🔓 Đạt 8/10 điểm để qua thử thách</li>
@@ -232,7 +232,7 @@ const QuizLeHoi = ({ onBack }) => {
                         <div className="flex-col-center">
                             <button
                                 onClick={startQuiz}
-                                className="w-full max-w-md py-4 px-8 font-extrabold text-xl rounded-2xl flex-center gap-3 start-btn"
+                                className="start-btn"
                             >
                                 <span>🚀</span> BẮT ĐẦU KHÁM PHÁ <span>🚀</span>
                             </button>
@@ -246,44 +246,44 @@ const QuizLeHoi = ({ onBack }) => {
             )}
 
             {screen === 'quiz' && (
-                <div className="quiz-screen min-h-screen flex-col-center p-4 max-w-4xl mx-auto">
-                    <div className="w-full quiz-header-card p-6 mb-6 shadow-md">
-                        <div className="flex-between flex-wrap gap-4">
-                            <div className="flex-center gap-4">
-                                <span className="text-3xl quiz-icon-bg p-2 rounded-full">📚</span>
+                <div className="quiz-screen">
+                    <div className="quiz-header-card">
+                        <div className="quiz-header-top">
+                            <div className="quiz-header-left">
+                                <span className="quiz-icon-bg block-icon">📚</span>
                                 <div>
                                     <p className="quiz-text-dark font-bold text-lg">Câu {currentQuestion + 1}/10</p>
-                                    <div className="w-40 h-3 quiz-icon-bg rounded-full overflow-hidden mt-1">
-                                        <div className="h-full quiz-progress-bar transition-all duration-300" style={{ width: `${((currentQuestion + 1) / 10) * 100}%` }}></div>
+                                    <div className="quiz-progress-track">
+                                        <div className="quiz-progress-fill" style={{ width: `${((currentQuestion + 1) / 10) * 100}%` }}></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className={`flex-center gap-3 px-6 py-3 rounded-2xl font-bold text-xl ${timeLeft <= 30 ? 'quiz-timer-urgent' : 'quiz-timer-normal'}`}>
+                            <div className={timeLeft <= 30 ? 'quiz-timer-urgent' : 'quiz-timer-normal'}>
                                 <span>⏰</span> {formatTime(timeLeft)}
                             </div>
 
-                            <div className="flex-center gap-3 px-6 py-3 rounded-2xl font-bold text-xl quiz-timer-normal">
+                            <div className="quiz-timer-normal">
                                 <span>⭐</span> {score}
                             </div>
                         </div>
                     </div>
 
-                    <div className="w-full flex-1 flex flex-col">
-                        <div className="quiz-question-container p-8 shadow-xl flex-1 flex flex-col relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-2 quiz-gradient-top"></div>
+                    <div className="quiz-content-area">
+                        <div className="quiz-question-container">
+                            <div className="quiz-gradient-top"></div>
 
-                            <div className="mb-8 p-6 quiz-question-box rounded-2xl">
-                                <p className="text-2xl font-bold quiz-question-text text-center leading-relaxed">
+                            <div className="quiz-question-box">
+                                <p className="quiz-question-text">
                                     {quizData[currentQuestion].question}
                                 </p>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
+                            <div className="quiz-options-grid">
                                 {quizData[currentQuestion].options.map((option, index) => {
                                     const labels = ['A', 'B', 'C', 'D'];
-                                    let btnClass = "quiz-option-btn w-full text-left p-6 rounded-2xl font-semibold text-xl transition-all duration-200 border-2 flex items-center gap-4 shadow-sm group ";
-                                    let spanClass = "quiz-option-label w-12 h-12 flex-center rounded-full font-bold text-lg shrink-0 transition-colors ";
+                                    let btnClass = "quiz-option-btn ";
+                                    let spanClass = "quiz-option-label ";
 
                                     if (isAnswered) {
                                         const isCorrectOpt = index === quizData[currentQuestion].correct;
@@ -326,17 +326,14 @@ const QuizLeHoi = ({ onBack }) => {
                     </div>
 
                     {feedback && (
-                        <div className="fixed inset-0 flex-center p-4 z-50 quiz-modal-overlay backdrop-blur-sm">
-                            <div className={`quiz-feedback-modal rounded-[2rem] p-10 max-w-lg w-full shadow-2xl text-center bounce-in border-t-8 ${feedback.correct ? 'border-green' : 'border-red'}`}>
-                                <div className="text-8xl mb-6">{feedback.correct ? '🎉' : '😅'}</div>
-                                <h3 className={`title-font text-4xl font-bold mb-4 ${feedback.correct ? 'feedback-text-correct' : 'feedback-text-wrong'}`}>
+                        <div className="quiz-modal-overlay">
+                            <div className={`quiz-feedback-modal bounce-in ${feedback.correct ? 'border-green' : 'border-red'}`}>
+                                <div className="feedback-emoji">{feedback.correct ? '🎉' : '😅'}</div>
+                                <h3 className={`title-font feedback-title ${feedback.correct ? 'feedback-text-correct' : 'feedback-text-wrong'}`}>
                                     {feedback.correct ? 'Quá xuất sắc!' : 'Ôi không!'}
                                 </h3>
-                                <p className="text-xl mb-8 leading-relaxed font-medium feedback-desc">{feedback.text}</p>
-                                <button
-                                    onClick={nextQuestion}
-                                    className="w-full py-4 text-white font-bold text-xl rounded-xl shadow-lg transition-all flex-center gap-2 continue-btn"
-                                >
+                                <p className="feedback-desc">{feedback.text}</p>
+                                <button onClick={nextQuestion} className="continue-btn">
                                     Tiếp tục nào ➡️
                                 </button>
                             </div>
@@ -346,51 +343,51 @@ const QuizLeHoi = ({ onBack }) => {
             )}
 
             {screen === 'result' && (
-                <div className="result-screen min-h-screen flex-col-center p-4">
-                    <div className="quiz-result-card rounded-[2.5rem] p-10 max-w-xl w-full shadow-2xl text-center relative overflow-hidden">
-                        <div className="absolute -top-10 -left-10 w-40 h-40 result-blob-1 rounded-full mix-blend-multiply filter blur-2xl opacity-70"></div>
-                        <div className="absolute -bottom-10 -right-10 w-40 h-40 result-blob-2 rounded-full mix-blend-multiply filter blur-2xl opacity-70"></div>
+                <div className="result-screen">
+                    <div className="quiz-result-card">
+                        <div className="result-blob-1"></div>
+                        <div className="result-blob-2"></div>
 
                         <div className="relative z-10">
-                            <div className="text-9xl mb-6">{score >= 8 ? '🏆' : '💪'}</div>
-                            <h2 className={`title-font text-5xl font-extrabold mb-6 ${score >= 8 ? 'result-title-pass' : 'result-title-fail'}`}>
+                            <div className="feedback-emoji">{score >= 8 ? '🏆' : '💪'}</div>
+                            <h2 className={`title-font result-title ${score >= 8 ? 'result-title-pass' : 'result-title-fail'}`}>
                                 {score >= 8 ? 'Tuyệt vời!' : 'Cố gắng thêm nhé!'}
                             </h2>
 
-                            <div className="result-score-box rounded-[2rem] p-8 mb-8">
-                                <p className="font-bold text-xl mb-4 uppercase tracking-wider result-score-label">Điểm số của bạn</p>
+                            <div className="result-score-box">
+                                <p className="result-score-label">Điểm số của bạn</p>
                                 <div className="flex-center gap-4">
-                                    <span className="text-6xl">⭐</span>
-                                    <span className="text-8xl font-black result-score-val leading-none">{score}</span>
-                                    <span className="text-4xl font-bold self-end pb-2 result-score-max">/10</span>
+                                    <span className="star-icon">⭐</span>
+                                    <span className="result-score-val">{score}</span>
+                                    <span className="result-score-max">/10</span>
                                 </div>
                             </div>
 
-                            <div className="result-time-box rounded-2xl p-4 mb-8 shadow-sm inline-block px-8">
-                                <p className="font-bold text-lg">⏱️ Thời gian hoàn thành: <span className="time-val">{formatTime(120 - timeLeft)}</span></p>
+                            <div className="result-time-box">
+                                <p>⏱️ Thời gian hoàn thành: <span className="time-val">{formatTime(120 - timeLeft)}</span></p>
                             </div>
 
                             {score >= 8 ? (
-                                <div className="result-pass-msg rounded-2xl p-6 mb-8 shadow-sm">
-                                    <p className="font-bold text-2xl flex-center gap-3 mb-2 pass-title">
+                                <div className="result-pass-msg">
+                                    <p className="pass-title">
                                         <span>🔓</span> Thử thách vượt qua!
                                     </p>
-                                    <p className="font-medium text-lg pass-desc">Bạn là chuyên gia văn hóa xứ Quảng! 🎊</p>
+                                    <p className="pass-desc">Bạn là chuyên gia văn hóa xứ Quảng! 🎊</p>
                                 </div>
                             ) : (
-                                <div className="result-fail-msg rounded-2xl p-6 mb-8 shadow-sm">
-                                    <p className="font-bold text-2xl flex-center gap-3 mb-2 fail-title">
+                                <div className="result-fail-msg">
+                                    <p className="fail-title">
                                         <span>🔒</span> Chưa đủ điểm
                                     </p>
-                                    <p className="font-medium text-lg fail-desc">Cần {8 - score} điểm nữa để qua bài. Hãy thử lại! 📚</p>
+                                    <p className="fail-desc">Cần {8 - score} điểm nữa để qua bài. Hãy thử lại! 📚</p>
                                 </div>
                             )}
 
-                            <div className="flex flex-col gap-4 max-w-sm mx-auto">
-                                <button onClick={startQuiz} className="w-full py-4 text-white font-bold text-xl rounded-xl shadow-lg transition-transform flex-center gap-3 start-btn">
+                            <div className="result-actions">
+                                <button onClick={startQuiz} className="start-btn actions-btn">
                                     <span>🔄</span> Chơi lại
                                 </button>
-                                <button onClick={() => { setScreen('home'); onBack(); }} className="w-full py-4 font-bold text-xl rounded-xl shadow transition-transform flex-center gap-3 back-btn-home">
+                                <button onClick={() => { setScreen('home'); onBack(); }} className="back-btn-home actions-btn">
                                     <span>🏠</span> Về trang nhiệm vụ
                                 </button>
                             </div>
