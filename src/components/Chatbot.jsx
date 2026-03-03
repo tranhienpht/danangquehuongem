@@ -9,7 +9,7 @@ import './Chatbot.css';
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { sender: 'bot', text: 'Chào bạn! Mình là trợ lý thông minh Đà Nẵng. Bạn muốn tìm hiểu gì về thành phố mình nào?' }
+        { sender: 'bot', text: 'Chào em! Tớ là Trợ lý Đà Nẵng, bạn đồng hành của em đây. Tớ sẵn sàng hướng dẫn và trả lời nhanh mọi câu hỏi về quê hương mình, em muốn tìm hiểu gì nào?' }
     ]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
@@ -67,23 +67,28 @@ const Chatbot = () => {
 
             // Using @google/generative-ai SDK
             const genAI = new GoogleGenerativeAI(apiKey);
+
+            // Just use a single reliable model
+            const modelName = "gemini-1.5-flash";
+
             const model = genAI.getGenerativeModel({
-                model: "gemini-1.5-flash",
-                systemInstruction: `Bạn là 'Trợ lý Đà Nẵng', bạn đồng hành lớp 4. Thân thiện, dễ hiểu, vui vẻ. \n\nĐây là dữ liệu bạn biết về Đà Nẵng:\n${getContextData()}\n\nHãy trả lời dựa trên dữ liệu này. Nếu không có trong dữ liệu, bạn có thể dùng kiến thức chung nhưng hãy nói giọng điệu thân thiện với học sinh tiểu học.`,
+                model: modelName,
+                systemInstruction: `Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.\n\nQUY TẮC TRẢ LỜI:\n1. Ngắn gọn, súc tích: Giới hạn trong 1-2 câu ngắn, đi thẳng vào vấn đề.\n2. Ngôn ngữ vui vẻ, thân thiện (xưng 'tớ' và 'em'), dễ hiểu với học sinh tiểu học.\n3. Ưu tiên dùng 'Dữ liệu về Đà Nẵng' dưới đây. Đặc biệt lưu ý việc từ 1/7/2025 sáp nhập tỉnh Quảng Nam vào thành phố Đà Nẵng.\n\nDữ liệu về Đà Nẵng:\n${getContextData()}\n\nNếu không có thông tin, hãy dùng kiến thức chung nhưng phải cực kỳ ngắn gọn và cùng giọng điệu này.`,
             });
 
             const result = await model.generateContent(userMsg);
             const response = await result.response;
-            const text = response.text() || "Xin lỗi em, tớ gặp chút lỗi. Em thử lại nhé!";
+            const text = response.text() || "Xin lỗi em, tớ không phản hồi được. Em thử lại nhé!";
 
             setMessages(prev => [...prev, { sender: 'bot', text }]);
+
         } catch (error) {
             console.error("Chat Error:", error);
             let errorText = "Lỗi kết nối rồi em ơi!";
             if (error.message && error.message.includes("Missing API Key")) {
                 errorText = "Chưa có cấu hình API Key em ơi. Nhờ thầy cô kiểm tra giúp nhé!";
             } else if (error.message && (error.message.includes("404") || error.message.includes("not found"))) {
-                errorText = `Không tìm thấy mô hình AI. Lỗi: ${error.message}`;
+                errorText = `Không tìm thấy mô hình AI. Thầy cô hãy cập nhật code lấy model mới nhất nhé. Lỗi: ${error.message}`;
             } else {
                 errorText = `Lỗi kết nối: ${error.message || "Không xác định"}. Em thử lại sau nhé!`;
             }

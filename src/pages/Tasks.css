@@ -219,6 +219,18 @@
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
 }
 
+/* Completed State */
+.mission-card.completed {
+    border: 2px solid #10b981;
+    background-color: #f0fdf4;
+    cursor: default;
+}
+
+.mission-card.completed:hover {
+    transform: none;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+}
+
 
 /* --- Game View Reuse & Adaptations --- */
 /* We need to adapt the game view to look good on this light background or give it a modal/overlay feel */

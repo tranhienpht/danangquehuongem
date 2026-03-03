@@ -1,0 +1,52 @@
+﻿
+E:\DA NANG QUE HUONG EM\src\components\QuizCuisine.jsx
+    1:27  error  'useEffect' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             no-unused-vars
+    3:8   error  'confetti' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              no-unused-vars
+  168:45  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  166 |         for (let i = 0; i < 20; i++) {
+  167 |             const particle = document.createElement('div');
+> 168 |             const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+      |                                             ^^^^^^^^^^^^^ Cannot call impure function
+  169 |             particle.textContent = emoji;
+  170 |             particle.className = 'fireworks-particle text-2xl';
+  171 |             particle.style.left = centerX + 'px';  react-hooks/purity
+  174:28  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  172 |             particle.style.top = centerY + 'px';
+  173 |
+> 174 |             const angle = (Math.random() * Math.PI * 2);
+      |                            ^^^^^^^^^^^^^ Cannot call impure function
+  175 |             const velocity = 150 + Math.random() * 100;
+  176 |             const tx = Math.cos(angle) * velocity;
+  177 |             const ty = Math.sin(angle) * velocity;                                                                                       react-hooks/purity
+  175:36  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  173 |
+  174 |             const angle = (Math.random() * Math.PI * 2);
+> 175 |             const velocity = 150 + Math.random() * 100;
+      |                                    ^^^^^^^^^^^^^ Cannot call impure function
+  176 |             const tx = Math.cos(angle) * velocity;
+  177 |             const ty = Math.sin(angle) * velocity;
+  178 |                                                                                                                                react-hooks/purity
+  182:46  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  180 |             particle.style.setProperty('--ty', ty + 'px');
+  181 |             particle.style.animation = `fireworks-cuisine 1s ease-out forwards`;
+> 182 |             particle.style.animationDelay = (Math.random() * 0.3) + 's';
+      |                                              ^^^^^^^^^^^^^ Cannot call impure function
+  183 |
+  184 |             document.body.appendChild(particle);
+  185 |             setTimeout(() => particle.remove(), 1300);                react-hooks/purity
+  511:51  error  'isWrong' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      no-unused-vars
+
+Γ£û 7 problems (7 errors, 0 warnings)
+

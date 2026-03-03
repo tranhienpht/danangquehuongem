@@ -39,6 +39,7 @@ const Share = () => {
             storedId = 'user_' + Math.random().toString(36).substr(2, 9);
             localStorage.setItem('share_user_id', storedId);
         }
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setUserId(storedId);
     }, []);
 

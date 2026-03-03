@@ -1,71 +1,58 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './QuizLeHoi.css';
+import './QuizModern.css';
 import confetti from 'canvas-confetti';
 
-const quizData = [
-    {
-        question: "Lễ hội Quán Thế Âm (lễ hội Chùa Non Nước) thường được tổ chức tại địa danh nào của Đà Nẵng?",
-        options: ["Bán đảo Sơn Trà", "Danh thắng Ngũ Hành Sơn", "Đèo Hải Vân", "Bà Nà Hills"],
-        correct: 1,
-        feedback: "Lễ hội diễn ra tại chùa Quán Thế Âm, thuộc ngọn núi Kim Sơn trong quần thể Ngũ Hành Sơn vào ngày 19/2 âm lịch hàng năm. 🏔️"
-    },
-    {
-        question: "Lễ hội Cầu ngư của ngư dân vùng biển Đà Nẵng gắn liền với việc thờ cúng vị thần nào?",
-        options: ["Thần Núi (Sơn Thần)", "Thần Nông", "Cá Ông (Cá Voi)", "Thành hoàng làng"],
-        correct: 2,
-        feedback: "Ngư dân thờ cúng Cá Ông để bày tỏ lòng biết ơn vì \"vị thần biển\" này thường giúp đỡ họ vượt qua sóng gió, tai nạn khi lênh đênh trên biển. 🐋"
-    },
-    {
-        question: "Hoạt động \"Đêm rằm phố cổ\" với việc thả đèn hoa đăng trên sông Hoài là nét đặc trưng của địa danh nào?",
-        options: ["Thành phố Tam Kỳ", "Thành phố Đà Nẵng", "Thành phố Hội An", "Thị xã Điện Bàn"],
-        correct: 2,
-        feedback: "Cứ vào tối 14 âm lịch hàng tháng, phố cổ Hội An lại tắt đèn điện, thắp đèn lồng và tổ chức thả hoa đăng cầu may mắn trên sông Hoài. 🏮"
-    },
-    {
-        question: "Lễ hội Đình làng Túy Loan (Đà Nẵng) nổi tiếng với hai đặc sản ẩm thực truyền thống nào sau đây?",
-        options: ["Bánh chưng và Bánh tét", "Mì Quảng và Bánh tráng", "Bánh xèo và Nem lụi", "Cơm gà và Cao lầu"],
-        correct: 1,
-        feedback: "Làng cổ Túy Loan nổi tiếng với nghề làm bánh tráng và mì Quảng, đây là những món ăn không thể thiếu trong các dịp lễ hội tại đây. 🍜"
-    },
-    {
-        question: "Nghi lễ quan trọng nhất trong Lễ hội Quán Thế Âm Ngũ Hành Sơn là gì?",
-        options: ["Cuộc thi chạy Marathon", "Lễ rước tượng Phật Bà Quán Thế Âm", "Hội thi nấu cơm", "Biểu diễn múa lân sư rồng"],
-        correct: 1,
-        feedback: "Lễ rước tượng Phật Bà Quán Thế Âm là nghi lễ trang trọng nhất, cầu mong hòa bình, quốc thái dân an và lòng từ bi. 🙏"
-    },
-    {
-        question: "Lễ hội Bà Thu Bồn ở Quảng Nam (cũ) gắn liền với đời sống của cư dân ven dòng sông nào?",
-        options: ["Sông Hàn", "Sông Cu Đê", "Sông Thu Bồn", "Sông Cổ Cò"],
-        correct: 2,
-        feedback: "Lễ hội diễn ra bên dòng sông Thu Bồn nhằm tưởng nhớ bà Mẹ xứ sở và cầu mong cho mùa màng tươi tốt, giao thông đường thủy thuận lợi. 🌾"
-    },
-    {
-        question: "Hoạt động nào dưới đây thường diễn ra trong phần \"Hội\" của lễ hội Cầu ngư tại Đà Nẵng?",
-        options: ["Thi đấu cờ người", "Hát Bả trạo và đua thuyền rồng", "Thi hái hoa dân chủ", "Biểu diễn xiếc thú"],
-        correct: 1,
-        feedback: "Hát Bả trạo (hát chèo thuyền) và đua thuyền là những hoạt động văn hóa đặc trưng, thể hiện sức mạnh và sự đoàn kết của ngư dân. 🚣"
-    },
-    {
-        question: "Lễ hội nào sau đây ở Quảng Nam (cũ) thể hiện sự giao thoa văn hóa giữa người Việt và người Chăm?",
-        options: ["Lễ hội Bà Chiêm Sơn", "Lễ hội Lục tánh vương gia", "Lễ hội Quạt làng mông", "Lễ hội xuống đồng"],
-        correct: 0,
-        feedback: "Lễ hội Dinh Bà Chiêm Sơn là một minh chứng sống động cho sự tiếp nối và giao thoa văn hóa giữa hai dân tộc Kinh và Chăm trên vùng đất Quảng (cũ). 🤝"
-    },
-    {
-        question: "Khi tham gia lễ hội truyền thống, hành động nào sau đây là văn minh và đúng mực?",
-        options: ["Leo trèo lên các tượng đá để chụp ảnh", "Xả rác ra sân đình, chùa sau khi ăn uống", "Ăn mặc lịch sự, giữ gìn vệ sinh chung", "Chen lấn, xô đẩy khi đi xem rước lễ"],
-        correct: 2,
-        feedback: "Giữ thái độ tôn trọng, ăn mặc chỉnh tề và giữ gìn vệ sinh là cách học sinh thể hiện lòng yêu nước và ý thức bảo tồn văn hóa quê hương. 🎓"
-    },
-    {
-        question: "Đình làng Túy Loan được công nhận là Di tích lịch sử văn hóa cấp quốc gia vào năm nào?",
-        options: ["1994", "1999", "2004", "2009"],
-        correct: 0,
-        feedback: "Đình làng Túy Loan đã được công nhận là Di tích lịch sử văn hóa cấp quốc gia vào năm 1994, là một trong những ngôi đình cổ nhất Đà Nẵng. 🏛️"
-    }
-];
+const getThemeAssets = (id) => {
+    const themes = {
+        1: {
+            heroImg: 'https://raw.githubusercontent.com/tranhienpht/danangquehuongem/main/public/images/map-illustration.png',
+            emojis: ['🌍', '📍', '🗺️', '⛰️', '🌊'],
+            title: 'Khám Phá Địa Lý Đà Nẵng Quảng Nam',
+            subtitle: 'Cùng khám phá bản đồ địa lý và các mốc ranh giới của Thành phố Đà Nẵng nhé! 🗺️',
+            passMsg: 'Bạn là chuyên gia bản đồ xuất sắc! 🎊',
+            failMsg: 'Đọc kỹ lại bài học và thử lại nhé! 📚'
+        },
+        2: {
+            heroImg: 'https://raw.githubusercontent.com/tranhienpht/danangquehuongem/main/public/images/food-illustration.png',
+            emojis: ['🏮', '🎆', '🚣', '🎋', '🐉'],
+            title: 'Khám Phá Lễ Hội Xứ Quảng',
+            subtitle: 'Cùng khám phá những nét văn hóa lễ hội đặc sắc của vùng đất miền Trung! 🌟',
+            passMsg: 'Bạn là chuyên gia văn hóa xứ Quảng! 🎊',
+            failMsg: 'Tham gia thêm nhiều lễ hội để tích lũy kiến thức nhé! 📚'
+        },
+        3: {
+            heroImg: 'https://raw.githubusercontent.com/tranhienpht/danangquehuongem/main/public/images/food-illustration.png',
+            emojis: ['🥢', '🍲', '🥗', '🍚', '🌰'],
+            title: 'Khám Phá Ẩm Thực Đà Nẵng',
+            subtitle: 'Cùng khám phá những món ăn đặc sản tuyệt vời của vùng đất miền Trung! 🌟',
+            passMsg: 'Bạn đích thực là siêu đầu bếp nhí! 🎊',
+            failMsg: 'Hãy nếm thử thêm nhiều món ngon để ghi nhớ nhé! 📚'
+        },
+        4: {
+            heroImg: 'https://raw.githubusercontent.com/tranhienpht/danangquehuongem/main/public/images/map-illustration.png',
+            emojis: ['📜', '🏰', '⚔️', '🇻🇳', '🏛️'],
+            title: 'Hồi Ức Những Trang Sử Vàng',
+            subtitle: 'Ngược dòng thời gian tìm hiểu lịch sử hào hùng của quê hương! ⚔️',
+            passMsg: 'Kiến thức lịch sử của bạn thật đáng nể! 🎊',
+            failMsg: 'Hãy đọc thêm về các vị anh hùng lịch sử nhé! 📚'
+        },
+        5: {
+            heroImg: 'https://raw.githubusercontent.com/tranhienpht/danangquehuongem/main/public/images/food-illustration.png',
+            emojis: ['🌉', '🏙️', '🎡', '🏖️', '❤️'],
+            title: 'Đà Nẵng Trong Tim Em',
+            subtitle: 'Bạn hiểu bao nhiêu về thành phố đáng sống này? Hãy kiểm tra nhé! 🌉',
+            passMsg: 'Đà Nẵng rất tự hào về bạn! 🎊',
+            failMsg: 'Tiếp tục khám phá thành phố của chúng ta nhé! 📚'
+        }
+    };
+    return themes[id] || { ...themes[1], title: 'Thử Thách Bài Học' };
+};
 
-const QuizLeHoi = ({ onBack }) => {
+const QuizModern = ({ mission, onBack, onComplete }) => {
+    const theme = getThemeAssets(mission?.id);
+    const quizData = mission?.questions || [];
+    const totalQuestions = quizData.length;
+    const passScore = mission?.passScore || Math.ceil(totalQuestions * 0.8);
     const [screen, setScreen] = useState('home'); // home, quiz, result
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
@@ -140,32 +127,37 @@ const QuizLeHoi = ({ onBack }) => {
     const endQuiz = () => {
         clearInterval(timerRef.current);
         setScreen('result');
-        if (score >= 8 || score + (isAnswered && feedback?.correct ? 1 : 0) >= 8) {
+        const finalScore = score + (isAnswered && feedback?.correct ? 1 : 0);
+        if (finalScore >= passScore) {
             playSound('correct');
             confetti({
                 particleCount: 150,
                 spread: 100,
                 origin: { y: 0.6 }
             });
+            if (onComplete) onComplete(true);
+        } else {
+            if (onComplete) onComplete(false);
         }
     };
 
-    const handleAnswer = (index) => {
+    const handleAnswer = (option, index) => {
         if (isAnswered) return;
         setIsAnswered(true);
         setSelectedOption(index);
 
         const q = quizData[currentQuestion];
-        const isCorrect = index === q.correct;
+        // Handle both older 'correct' index and newer 'answer' string
+        const isCorrect = q.answer ? option === q.answer : index === q.correct;
 
         if (isCorrect) {
             setScore(s => s + 1);
             playSound('correct');
             confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
-            setFeedback({ correct: true, text: q.feedback });
+            setFeedback({ correct: true, text: q.explanation || q.feedback });
         } else {
             playSound('wrong');
-            setFeedback({ correct: false, text: q.feedback });
+            setFeedback({ correct: false, text: q.explanation || q.feedback });
         }
     };
 
@@ -192,20 +184,20 @@ const QuizLeHoi = ({ onBack }) => {
             {screen === 'home' && (
                 <div className="home-screen">
                     <div className="flex-col-center mb-6">
-                        <img src="https://raw.githubusercontent.com/tranhienpht/danangquehuongem/main/public/images/food-illustration.png" alt="food" className="hero-img" onError={(e) => { e.target.style.display = 'none'; }} />
+                        <img src={theme.heroImg} alt="minh-hoa" className="hero-img" onError={(e) => { e.target.style.display = 'none'; }} />
                         <div className="emoji-row">
-                            <span className="text-3xl">🥢</span><span className="text-3xl">🍲</span><span className="text-3xl">🥗</span><span className="text-3xl">🍚</span><span className="text-3xl">🌰</span>
+                            {theme.emojis.map((emoji, i) => <span key={i} className="text-3xl">{emoji}</span>)}
                         </div>
                     </div>
 
-                    <h1 className="title-font text-5xl-responsive font-extrabold text-center mb-4 quiz-title-color">Khám Phá Ẩm Thực Đà Nẵng Quảng Nam</h1>
-                    <p className="text-center font-semibold mb-10 text-xl subtitle-text quiz-subtitle-color">Cùng khám phá những món ăn đặc sản tuyệt vời của vùng đất miền Trung qua 10 câu hỏi thú vị! 🌟</p>
+                    <h1 className="title-font text-5xl-responsive font-extrabold text-center mb-4 quiz-title-color">{mission?.title || theme.title}</h1>
+                    <p className="text-center font-semibold mb-10 text-xl subtitle-text quiz-subtitle-color">{theme.subtitle}</p>
 
                     <div className="quiz-card-main">
                         <div className="flex-around">
                             <div className="text-center flex-1">
                                 <span className="text-4xl mb-2">📝</span>
-                                <p className="font-extrabold text-3xl quiz-stat-val">10</p>
+                                <p className="font-extrabold text-3xl quiz-stat-val">{totalQuestions}</p>
                                 <p className="font-medium quiz-stat-label">Câu hỏi</p>
                             </div>
                             <div className="text-center flex-1">
@@ -215,7 +207,7 @@ const QuizLeHoi = ({ onBack }) => {
                             </div>
                             <div className="text-center flex-1">
                                 <span className="text-4xl mb-2">🎯</span>
-                                <p className="font-extrabold text-3xl quiz-stat-val">8/10</p>
+                                <p className="font-extrabold text-3xl quiz-stat-val">{passScore}/{totalQuestions}</p>
                                 <p className="font-medium quiz-stat-label">Để mở khóa</p>
                             </div>
                         </div>
@@ -225,7 +217,7 @@ const QuizLeHoi = ({ onBack }) => {
                             <ul>
                                 <li>✨ Mỗi câu đúng được +1 điểm</li>
                                 <li>🎆 Trả lời đúng có hiệu ứng pháo hoa</li>
-                                <li>🔓 Đạt 8/10 điểm để qua thử thách</li>
+                                <li>🔓 Đạt {passScore}/{totalQuestions} điểm để qua thử thách</li>
                             </ul>
                         </div>
 
@@ -252,9 +244,9 @@ const QuizLeHoi = ({ onBack }) => {
                             <div className="quiz-header-left">
                                 <span className="quiz-icon-bg block-icon">📚</span>
                                 <div>
-                                    <p className="quiz-text-dark font-bold text-lg">Câu {currentQuestion + 1}/10</p>
+                                    <p className="quiz-text-dark font-bold text-lg">Câu {currentQuestion + 1}/{totalQuestions}</p>
                                     <div className="quiz-progress-track">
-                                        <div className="quiz-progress-fill" style={{ width: `${((currentQuestion + 1) / 10) * 100}%` }}></div>
+                                        <div className="quiz-progress-fill" style={{ width: `${((currentQuestion + 1) / totalQuestions) * 100}%` }}></div>
                                     </div>
                                 </div>
                             </div>
@@ -280,42 +272,42 @@ const QuizLeHoi = ({ onBack }) => {
                             </div>
 
                             <div className="quiz-options-grid">
-                                {quizData[currentQuestion].options.map((option, index) => {
+                                {(quizData[currentQuestion].fullOptions || quizData[currentQuestion].options).map((option, index) => {
                                     const labels = ['A', 'B', 'C', 'D'];
-                                    let btnClass = "quiz-option-btn ";
-                                    let spanClass = "quiz-option-label ";
+                                    let btnClass = "quiz-option-btn";
+                                    let spanClass = "quiz-option-label";
+
+                                    const q = quizData[currentQuestion];
+                                    const isCorrectOpt = q.answer ? option === q.answer : index === q.correct;
 
                                     if (isAnswered) {
-                                        const isCorrectOpt = index === quizData[currentQuestion].correct;
                                         const isSelectedOpt = index === selectedOption;
 
                                         if (isCorrectOpt) {
-                                            btnClass += "quiz-opt-correct";
-                                            spanClass += "quiz-lbl-correct";
+                                            btnClass += " quiz-opt-correct";
+                                            spanClass += " quiz-lbl-correct";
                                         } else if (isSelectedOpt && !isCorrectOpt) {
-                                            btnClass += "quiz-opt-wrong shake-animation";
-                                            spanClass += "quiz-lbl-wrong";
+                                            btnClass += " quiz-opt-wrong shake-animation";
+                                            spanClass += " quiz-lbl-wrong";
                                         } else {
-                                            btnClass += "quiz-opt-disabled opacity-60";
-                                            spanClass += "quiz-lbl-disabled";
+                                            btnClass += " quiz-opt-disabled opacity-60";
+                                            spanClass += " quiz-lbl-disabled";
                                         }
-                                    } else {
-                                        // default state classes handled by quiz-option-btn in CSS
                                     }
 
                                     return (
                                         <button
                                             key={index}
                                             disabled={isAnswered}
-                                            onClick={() => handleAnswer(index)}
+                                            onClick={() => handleAnswer(option, index)}
                                             className={btnClass}
                                         >
                                             <span className={spanClass}>{labels[index]}</span>
-                                            <span className="flex-1">{option}</span>
-                                            {isAnswered && index === quizData[currentQuestion].correct && (
+                                            <span className="flex-1 text-left">{option}</span>
+                                            {isAnswered && isCorrectOpt && (
                                                 <span className="text-2xl text-green-500 animate-bounce">✓</span>
                                             )}
-                                            {isAnswered && index === selectedOption && index !== quizData[currentQuestion].correct && (
+                                            {isAnswered && index === selectedOption && !isCorrectOpt && (
                                                 <span className="text-2xl text-red-500">✗</span>
                                             )}
                                         </button>
@@ -349,9 +341,9 @@ const QuizLeHoi = ({ onBack }) => {
                         <div className="result-blob-2"></div>
 
                         <div className="relative z-10">
-                            <div className="feedback-emoji">{score >= 8 ? '🏆' : '💪'}</div>
-                            <h2 className={`title-font result-title ${score >= 8 ? 'result-title-pass' : 'result-title-fail'}`}>
-                                {score >= 8 ? 'Tuyệt vời!' : 'Cố gắng thêm nhé!'}
+                            <div className="feedback-emoji">{score >= passScore ? '🏆' : '💪'}</div>
+                            <h2 className={`title-font result-title ${score >= passScore ? 'result-title-pass' : 'result-title-fail'}`}>
+                                {score >= passScore ? 'Tuyệt vời!' : 'Cố gắng thêm nhé!'}
                             </h2>
 
                             <div className="result-score-box">
@@ -359,7 +351,7 @@ const QuizLeHoi = ({ onBack }) => {
                                 <div className="flex-center gap-4">
                                     <span className="star-icon">⭐</span>
                                     <span className="result-score-val">{score}</span>
-                                    <span className="result-score-max">/10</span>
+                                    <span className="result-score-max">/{totalQuestions}</span>
                                 </div>
                             </div>
 
@@ -367,19 +359,19 @@ const QuizLeHoi = ({ onBack }) => {
                                 <p>⏱️ Thời gian hoàn thành: <span className="time-val">{formatTime(120 - timeLeft)}</span></p>
                             </div>
 
-                            {score >= 8 ? (
+                            {score >= passScore ? (
                                 <div className="result-pass-msg">
                                     <p className="pass-title">
                                         <span>🔓</span> Thử thách vượt qua!
                                     </p>
-                                    <p className="pass-desc">Bạn là chuyên gia văn hóa xứ Quảng! 🎊</p>
+                                    <p className="pass-desc">{theme.passMsg}</p>
                                 </div>
                             ) : (
                                 <div className="result-fail-msg">
                                     <p className="fail-title">
                                         <span>🔒</span> Chưa đủ điểm
                                     </p>
-                                    <p className="fail-desc">Cần {8 - score} điểm nữa để qua bài. Hãy thử lại! 📚</p>
+                                    <p className="fail-desc">Cần {passScore - score} điểm nữa để qua bài. {theme.failMsg}</p>
                                 </div>
                             )}
 
@@ -399,4 +391,4 @@ const QuizLeHoi = ({ onBack }) => {
     );
 };
 
-export default QuizLeHoi;
+export default QuizModern;

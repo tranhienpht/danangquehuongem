@@ -14,7 +14,7 @@ import FamousPeople from './pages/study/FamousPeople';
 import Map3D from './pages/study/Map3D';
 import Festivals from './pages/study/Festivals';
 import FestivalDetail from './pages/study/FestivalDetail';
-// import Chatbot from './components/Chatbot';
+import Chatbot from './components/Chatbot';
 import Cuisine from './pages/study/Cuisine';
 import { Heritage, Environment } from './pages/study/Placeholders';
 import './index.css';
@@ -28,7 +28,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
-      {/* <Chatbot /> */}
+      <Chatbot />
     </div>
   );
 };

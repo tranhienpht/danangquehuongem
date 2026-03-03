@@ -5,8 +5,6 @@ import './QuizComponent.css';
 
 const QuizComponent = ({ questions }) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [isCorrect, setIsCorrect] = useState(null);
     const [score, setScore] = useState(0);
     const [showResult, setShowResult] = useState(false);
     const [quizCompleted, setQuizCompleted] = useState(false);
@@ -27,11 +25,9 @@ const QuizComponent = ({ questions }) => {
         setAttempts(newAttempts);
 
         if (correct) {
-            setIsCorrect(true);
             setShowResult(true);
             setScore(score + 1);
         } else if (newAttempts >= 2) {
-            setIsCorrect(false);
             setShowResult(true);
         }
     };
@@ -39,7 +35,6 @@ const QuizComponent = ({ questions }) => {
     const handleNextQuestion = () => {
         setShowResult(false);
         setSelectedOptions([]);
-        setIsCorrect(null);
         setAttempts(0);
 
         if (currentQuestionIndex < questions.length - 1) {
