@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="vi" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đi Chợ Nấu Ăn</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="/_sdk/element_sdk.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Baloo 2', cursive;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-10px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(10px);
+            }
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(2deg);
+            }
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .pop-in {
+            animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .bounce {
+            animation: bounce 0.6s ease-in-out infinite;
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .ingredient-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .ingredient-card:hover:not(.selected):not(.disabled) {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        .ingredient-card.selected {
+            transform: scale(0.98);
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            animation: confetti 1.5s ease-out forwards;
+        }
+
+        .progress-dot {
+            transition: all 0.3s ease;
+        }
+
+        .dish-emoji {
+            font-size: 4rem;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+    </style>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+    </style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+
+<body class="h-full overflow-auto">
+    <div id="app"
+        class="min-h-full w-full bg-gradient-to-br from-amber-100 via-orange-50 to-yellow-100 relative overflow-hidden">
+        <!-- Decorative background elements -->
+        <div class="absolute top-10 left-10 text-6xl opacity-20 float" style="animation-delay: 0s;">
+            🥬
+        </div>
+        <div class="absolute top-20 right-16 text-5xl opacity-20 float" style="animation-delay: 0.5s;">
+            🍜
+        </div>
+        <div class="absolute bottom-32 left-16 text-5xl opacity-20 float" style="animation-delay: 1s;">
+            🥢
+        </div>
+        <div class="absolute bottom-20 right-10 text-6xl opacity-20 float" style="animation-delay: 1.5s;">
+            🌶️
+        </div><!-- Main content -->
+        <div class="relative z-10 p-4 md:p-6 max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-6">
+                <h1 id="mainTitle" class="text-3xl md:text-4xl font-extrabold text-orange-600 drop-shadow-sm mb-2">🛒 Đi
+                    Chợ Nấu Ăn 🍳</h1>
+                <p class="text-orange-500 font-medium">Chọn đúng 4 nguyên liệu chính nhé!</p>
+            </div><!-- Progress bar -->
+            <div class="flex justify-center items-center gap-2 mb-6">
+                <span class="text-sm font-semibold text-orange-600">Tiến độ:</span>
+                <div id="progressDots" class="flex gap-2">
+                    <!-- Dots will be generated by JS -->
+                </div>
+            </div><!-- Score display -->
+            <div class="flex justify-center gap-6 mb-6">
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl px-5 py-2 shadow-lg border-2 border-green-200">
+                    <span class="text-green-600 font-bold">✅ Đúng: <span id="correctCount">0</span></span>
+                </div>
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl px-5 py-2 shadow-lg border-2 border-red-200">
+                    <span class="text-red-500 font-bold">❌ Sai: <span id="wrongCount">0</span></span>
+                </div>
+            </div><!-- Dish card -->
+            <div
+                class="bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl mb-6 border-4 border-orange-200 relative overflow-hidden">
+                <div class="absolute -top-2 -right-2 text-4xl opacity-30">
+                    ✨
+                </div>
+                <div class="text-center">
+                    <div id="dishEmoji" class="dish-emoji mb-3 bounce">
+                        🍜
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-700 mb-1">Hôm nay mình nấu:</h2>
+                    <h3 id="dishName" class="text-2xl md:text-3xl font-extrabold text-orange-500">Mì Quảng</h3>
+                    <p class="text-gray-500 mt-2 text-sm">Chọn <span class="font-bold text-orange-500">4 nguyên liệu
+                            chính</span> trong 6 nguyên liệu bên dưới</p>
+                </div>
+            </div><!-- Selection counter -->
+            <div class="text-center mb-4">
+                <div class="inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 shadow-md">
+                    <span class="text-gray-600 font-medium">Đã chọn:</span> <span id="selectionCount"
+                        class="text-2xl font-bold text-orange-500">0</span> <span class="text-gray-500">/</span> <span
+                        class="text-2xl font-bold text-gray-400">4</span>
+                </div>
+            </div><!-- Ingredients grid -->
+            <div id="ingredientsGrid" class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                <!-- Ingredient cards will be generated by JS -->
+            </div><!-- Check answer button -->
+            <div class="text-center">
+                <button id="checkBtn" onclick="checkAnswer()" class="bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 
+          text-white font-bold text-xl px-10 py-4 rounded-full shadow-lg 
+          transform transition-all duration-300 hover:scale-105 hover:shadow-xl
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none" disabled> ✨ Kiểm tra đáp án ✨
+                </button>
+            </div>
+        </div><!-- Popup overlay -->
+        <div id="popup" class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+            style="background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);">
+            <div id="popupContent"
+                class="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-3xl p-8 max-w-md w-full shadow-2xl border-4 relative overflow-hidden">
+                <!-- Confetti container -->
+                <div id="confettiContainer" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+                <div class="relative z-10 text-center">
+                    <div id="popupEmoji" class="text-8xl mb-4">
+                        🎉
+                    </div>
+                    <h2 id="popupTitle" class="text-3xl font-extrabold mb-4">Chính xác rồi!</h2>
+                    <p id="popupMessage" class="text-gray-600 text-lg mb-6 leading-relaxed"></p><button id="continueBtn"
+                        onclick="nextDish()" class="bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 
+            text-white font-bold text-xl px-8 py-3 rounded-full shadow-lg 
+            transform transition-all duration-300 hover:scale-105"> Tiếp tục ➡️ </button>
+                </div>
+            </div>
+        </div><!-- End game popup -->
+        <div id="endPopup" class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+            style="background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);">
+            <div
+                class="bg-gradient-to-br from-yellow-100 via-orange-50 to-amber-100 rounded-3xl p-8 max-w-md w-full shadow-2xl border-4 border-yellow-300 relative overflow-hidden pop-in">
+                <div id="endConfetti" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+                <div class="relative z-10 text-center">
+                    <div class="text-8xl mb-4">
+                        🏆
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-orange-600 mb-4">Hoàn thành!</h2>
+                    <p class="text-gray-600 text-lg mb-2">Bạn đã hoàn thành tất cả các món ăn!</p>
+                    <div class="bg-white/80 rounded-2xl p-4 mb-6 shadow-inner">
+                        <p class="text-xl font-bold text-gray-700">Kết quả của bạn:</p>
+                        <p class="text-green-500 text-2xl font-bold">✅ Đúng: <span id="finalCorrect">0</span></p>
+                        <p class="text-red-500 text-2xl font-bold">❌ Sai: <span id="finalWrong">0</span></p>
+                    </div>
+                    <div>
+                        <p class="text-orange-600 font-bold mb-4">Xin chúc mừng em đã hoàn thành thử thách ẩm thực!</p>
+                        <button onclick="parent.postMessage('cooking-game-complete', '*')" class="bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 
+            text-white font-bold text-xl px-8 py-3 rounded-full shadow-lg w-full mb-3
+            transform transition-all duration-300 hover:scale-105"> 🏅 Nhận huy hiệu </button>
+                    </div>
+                    <button onclick="restartGame()" class="bg-gradient-to-r from-orange-400 to-red-500 hover:from-orange-500 hover:to-red-600 
+            text-white font-bold text-xl px-8 py-3 rounded-full shadow-lg w-full
+            transform transition-all duration-300 hover:scale-105"> 🔄 Chơi lại </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Game data
+        const dishes = [
+            {
+                name: "Mì Quảng",
+                emoji: "🍜",
+                correct: ["Mì sợi vàng", "Tôm", "Thịt heo", "Đậu phộng"],
+                wrong: ["Bún", "Đậu hũ"],
+                tip: "Mì Quảng có sợi mì vàng đặc trưng, nước dùng ít và đậm đà!"
+            },
+            {
+                name: "Bánh Xèo",
+                emoji: "🥞",
+                correct: ["Bột gạo", "Tôm", "Giá đỗ", "Thịt ba chỉ"],
+                wrong: ["Mì sợi", "Cá"],
+                tip: "Bánh xèo giòn tan với nhân tôm thịt và giá đỗ tươi ngon!"
+            },
+            {
+                name: "Bánh Khô Mè",
+                emoji: "🍪",
+                correct: ["Bột nếp", "Mè trắng", "Đường", "Mạch nha"],
+                wrong: ["Bột mì", "Muối"],
+                tip: "Bánh khô mè là đặc sản Đà Nẵng với vị ngọt bùi của mè!"
+            },
+            {
+                name: "Cao Lầu",
+                emoji: "🍝",
+                correct: ["Mì cao lầu", "Thịt xá xíu", "Rau sống", "Tóp mỡ"],
+                wrong: ["Phở", "Tôm"],
+                tip: "Cao lầu Hội An có sợi mì dai giòn đặc biệt nhờ nước tro!"
+            },
+            {
+                name: "Bún Chả Đà Nẵng",
+                emoji: "🍖",
+                correct: ["Bún", "Chả lợn", "Thịt lợn nướng", "Nước mắm chua ngọt"],
+                wrong: ["Bánh tráng", "Cà ri"],
+                tip: "Bún chả Đà Nẵng với chả lợn thơm ngon và thịt nướng giòn!"
+            },
+            {
+                name: "Bánh Tráng Thịt Heo",
+                emoji: "🥬",
+                correct: ["Bánh tráng", "Thịt heo luộc", "Rau sống", "Mắm nêm"],
+                wrong: ["Bún", "Thịt bò"],
+                tip: "Món cuốn đặc trưng Đà Nẵng với mắm nêm đậm đà!"
+            },
+            {
+                name: "Bánh Mì",
+                emoji: "🥖",
+                correct: ["Bánh mì", "Pate", "Chả lụa", "Rau mùi"],
+                wrong: ["Cơm", "Mì gói"],
+                tip: "Bánh mì Việt Nam nổi tiếng thế giới với nhân phong phú!"
+            }
+        ];
+
+        let currentDishIndex = 0;
+        let selectedIngredients = [];
+        let correctCount = 0;
+        let wrongCount = 0;
+
+        const defaultConfig = {
+            game_title: "🛒 Đi Chợ Nấu Ăn 🍳"
+        };
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function renderProgressDots() {
+            const container = document.getElementById('progressDots');
+            container.innerHTML = '';
+            dishes.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `progress-dot w-4 h-4 rounded-full ${index < currentDishIndex ? 'bg-green-400' :
+                        index === currentDishIndex ? 'bg-orange-400 scale-125' : 'bg-gray-300'
+                    }`;
+                container.appendChild(dot);
+            });
+        }
+
+        function renderDish() {
+            const dish = dishes[currentDishIndex];
+            document.getElementById('dishName').textContent = dish.name;
+            document.getElementById('dishEmoji').textContent = dish.emoji;
+
+            // Combine and shuffle ingredients
+            const allIngredients = shuffleArray([...dish.correct, ...dish.wrong]);
+
+            const grid = document.getElementById('ingredientsGrid');
+            grid.innerHTML = '';
+
+            allIngredients.forEach((ingredient, index) => {
+                const isCorrect = dish.correct.includes(ingredient);
+                const card = document.createElement('button');
+                card.className = `ingredient-card bg-white rounded-2xl p-4 shadow-lg border-3 border-transparent
+          hover:border-orange-300 cursor-pointer text-center transition-all duration-300`;
+                card.dataset.ingredient = ingredient;
+                card.dataset.correct = isCorrect;
+                card.style.animationDelay = `${index * 0.1}s`;
+
+                // Get emoji for ingredient
+                const emoji = getIngredientEmoji(ingredient);
+
+                card.innerHTML = `
+          <div class="text-4xl mb-2">${emoji}</div>
+          <p class="font-bold text-gray-700 text-sm md:text-base">${ingredient}</p>
+        `;
+
+                card.onclick = () => toggleIngredient(card);
+                grid.appendChild(card);
+            });
+
+            selectedIngredients = [];
+            updateSelectionCount();
+            renderProgressDots();
+        }
+
+        function getIngredientEmoji(name) {
+            const emojiMap = {
+                "Mì sợi vàng": "🍝", "Tôm": "🦐", "Thịt heo": "🥩", "Đậu phộng": "🥜",
+                "Bún": "🍜", "Đậu hũ": "🧈", "Bột gạo": "🌾", "Giá đỗ": "🌱",
+                "Thịt ba chỉ": "🥓", "Mì sợi": "🍝", "Cá": "🐟", "Bột nếp": "🍚",
+                "Mè trắng": "⚪", "Đường": "🍬", "Mạch nha": "🍯", "Bột mì": "🌾",
+                "Muối": "🧂", "Mì cao lầu": "🍜", "Thịt xá xíu": "🍖", "Rau sống": "🥗",
+                "Tóp mỡ": "🥓", "Phở": "🍲", "Chả viên": "🧆", "Thịt nướng": "🍢",
+                "Nước mắm pha": "🥣", "Mì": "🍝", "Cà ri": "🍛", "Bánh tráng": "🫓",
+                "Thịt heo luộc": "🥩", "Mắm nêm": "🥣", "Thịt bò": "🥩",
+                "Bánh mì": "🥖", "Pate": "🫕", "Chả lụa": "🌭", "Rau mùi": "🌿",
+                "Cơm": "🍚", "Mì gói": "🍜"
+            };
+            return emojiMap[name] || "🍽️";
+        }
+
+        function toggleIngredient(card) {
+            const ingredient = card.dataset.ingredient;
+
+            if (selectedIngredients.includes(ingredient)) {
+                selectedIngredients = selectedIngredients.filter(i => i !== ingredient);
+                card.classList.remove('selected', 'bg-orange-100', 'border-orange-400');
+                card.classList.add('border-transparent');
+            } else if (selectedIngredients.length < 4) {
+                selectedIngredients.push(ingredient);
+                card.classList.add('selected', 'bg-orange-100', 'border-orange-400');
+                card.classList.remove('border-transparent');
+            }
+
+            updateSelectionCount();
+        }
+
+        function updateSelectionCount() {
+            document.getElementById('selectionCount').textContent = selectedIngredients.length;
+            const checkBtn = document.getElementById('checkBtn');
+            checkBtn.disabled = selectedIngredients.length !== 4;
+
+            if (selectedIngredients.length === 4) {
+                checkBtn.classList.add('bounce');
+            } else {
+                checkBtn.classList.remove('bounce');
+            }
+        }
+
+        function checkAnswer() {
+            const dish = dishes[currentDishIndex];
+            const correctSelected = selectedIngredients.filter(i => dish.correct.includes(i));
+            const isAllCorrect = correctSelected.length === 4 && selectedIngredients.length === 4;
+
+            const popup = document.getElementById('popup');
+            const popupContent = document.getElementById('popupContent');
+            const popupEmoji = document.getElementById('popupEmoji');
+            const popupTitle = document.getElementById('popupTitle');
+            const popupMessage = document.getElementById('popupMessage');
+
+            if (isAllCorrect) {
+                correctCount++;
+                popupEmoji.textContent = "🎉";
+                popupTitle.textContent = "Chính xác rồi!";
+                popupTitle.className = "text-3xl font-extrabold mb-4 text-green-500";
+                popupMessage.innerHTML = `<span class="text-green-600 font-bold">Giỏi lắm!</span><br>${dish.tip}`;
+                popupContent.classList.remove('border-red-300');
+                popupContent.classList.add('border-green-300');
+                createConfetti();
+            } else {
+                wrongCount++;
+
+                // Shake wrong selections
+                document.querySelectorAll('.ingredient-card.selected').forEach(card => {
+                    if (card.dataset.correct === 'false') {
+                        card.classList.add('shake', 'bg-red-100', 'border-red-400');
+                    }
+                });
+
+                setTimeout(() => {
+                    popupEmoji.textContent = "😅";
+                    popupTitle.textContent = "Chưa đúng rồi!";
+                    popupTitle.className = "text-3xl font-extrabold mb-4 text-red-500";
+
+                    const correctList = dish.correct.join(", ");
+                    popupMessage.innerHTML = `<span class="text-red-500 font-bold">Cố gắng lên nào!</span><br>
+            <span class="text-gray-600">Đáp án đúng là:</span><br>
+            <span class="font-bold text-orange-500">${correctList}</span><br><br>
+            <span class="text-sm text-gray-500">${dish.tip}</span>`;
+                    popupContent.classList.remove('border-green-300');
+                    popupContent.classList.add('border-red-300');
+
+                    showPopup();
+                }, 500);
+
+                updateScores();
+                return;
+            }
+
+            updateScores();
+            showPopup();
+        }
+
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            const popupContent = document.getElementById('popupContent');
+            popup.classList.remove('hidden');
+            popup.classList.add('flex');
+            popupContent.classList.add('pop-in');
+        }
+
+        function hidePopup() {
+            const popup = document.getElementById('popup');
+            const popupContent = document.getElementById('popupContent');
+            popup.classList.add('hidden');
+            popup.classList.remove('flex');
+            popupContent.classList.remove('pop-in');
+            document.getElementById('confettiContainer').innerHTML = '';
+        }
+
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            container.innerHTML = '';
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd', '#00d2d3'];
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(confetti);
+            }
+        }
+
+        function updateScores() {
+            document.getElementById('correctCount').textContent = correctCount;
+            document.getElementById('wrongCount').textContent = wrongCount;
+        }
+
+        function nextDish() {
+            hidePopup();
+            currentDishIndex++;
+
+            if (currentDishIndex >= dishes.length) {
+                showEndPopup();
+            } else {
+                renderDish();
+            }
+        }
+
+        function showEndPopup() {
+            const endPopup = document.getElementById('endPopup');
+            document.getElementById('finalCorrect').textContent = correctCount;
+            document.getElementById('finalWrong').textContent = wrongCount;
+            endPopup.classList.remove('hidden');
+            endPopup.classList.add('flex');
+
+            // Create confetti for end screen
+            const container = document.getElementById('endConfetti');
+            container.innerHTML = '';
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd', '#00d2d3'];
+
+            for (let i = 0; i < 80; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(confetti);
+            }
+        }
+
+        function restartGame() {
+            currentDishIndex = 0;
+            correctCount = 0;
+            wrongCount = 0;
+            selectedIngredients = [];
+            updateScores();
+
+            const endPopup = document.getElementById('endPopup');
+            endPopup.classList.add('hidden');
+            endPopup.classList.remove('flex');
+
+            renderDish();
+        }
+
+        // Initialize game
+        renderDish();
+    </script>
+</body>
+
+</html>
