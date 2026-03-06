@@ -11,13 +11,24 @@ import NotFound from './pages/NotFound';
 import StudyLayout from './layouts/StudyLayout';
 import Nature from './pages/study/Nature';
 import FamousPeople from './pages/study/FamousPeople';
+import FamousPeopleDetail from './pages/study/FamousPeopleDetail';
 import Map3D from './pages/study/Map3D';
 import Festivals from './pages/study/Festivals';
 import FestivalDetail from './pages/study/FestivalDetail';
 import Chatbot from './components/Chatbot';
 import Cuisine from './pages/study/Cuisine';
 import { Heritage, Environment } from './pages/study/Placeholders';
+import Doremon from './pages/study/Doremon';
+import Login from './pages/Login';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import './index.css';
+
+// Protected Route wrapper
+const ProtectedRoute = ({ children }) => {
+  const { currentUser } = useAuth();
+  if (!currentUser) return <Navigate to="/login" replace />;
+  return children;
+};
 
 // Layout component to wrap pages with Header and Footer
 const Layout = () => {
@@ -36,8 +47,12 @@ const Layout = () => {
 // Define routes using the Data Router API
 const router = createHashRouter([
   {
+    path: "/login",
+    element: <Login />
+  },
+  {
     path: "/",
-    element: <Layout />,
+    element: <ProtectedRoute><Layout /></ProtectedRoute>,
     errorElement: <NotFound />, // Handle 404s and errors
     children: [
       {
@@ -55,8 +70,10 @@ const router = createHashRouter([
           { path: "festivals/:id", element: <FestivalDetail /> },
           { path: "cuisine", element: <Cuisine /> },
           { path: "famous-people", element: <FamousPeople /> },
+          { path: "famous-people/:id", element: <FamousPeopleDetail /> },
           { path: "heritage", element: <Heritage /> },
-          { path: "environment", element: <Environment /> }
+          { path: "environment", element: <Environment /> },
+          { path: "doremon", element: <Doremon /> }
         ]
       },
       {
@@ -84,7 +101,11 @@ const router = createHashRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;

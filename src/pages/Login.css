@@ -1,0 +1,391 @@
+/* Full page wrapper removing header/footer constraints for just this page view if possible, 
+   but since it's within Layout, we will make it fill the available height */
+.login-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    min-height: calc(100vh - 80px);
+    /* minus header approx */
+    background-color: #f7fbfa;
+    /* Light fresh background */
+    margin: -2rem;
+    /* Negate the generic page padding to stretch fully */
+}
+
+/* LEFT PANEL */
+.login-brand-panel {
+    flex: 0 0 45%;
+    background-color: #0d4a45;
+    /* Dark teal green background */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle background circular curves (optional decorative) */
+.login-brand-panel::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    border: 30px solid rgba(255, 255, 255, 0.02);
+    top: -100px;
+    left: -200px;
+}
+
+.brand-content {
+    text-align: center;
+    max-width: 450px;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-box {
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0 auto 1.5rem;
+    letter-spacing: -1px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.brand-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.brand-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    width: 80%;
+    margin: 0 auto 1.5rem;
+}
+
+.brand-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e3a93d;
+    /* Golden text */
+    letter-spacing: 2px;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.subtitle-highlight {
+    color: #a4cecb;
+    /* Lighter mint text */
+    letter-spacing: 4px;
+    font-size: 1.15rem;
+}
+
+.brand-quote {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: #c9e0de;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+}
+
+.brand-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* RIGHT PANEL */
+.login-form-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background-color: white;
+}
+
+.form-content-inner {
+    width: 100%;
+    max-width: 420px;
+}
+
+.form-main-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0d4a45;
+    /* Dark teal */
+    margin-bottom: 0.5rem;
+}
+
+.form-sub-text {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+}
+
+.login-error-msg {
+    background: #ffebee;
+    color: #d32f2f;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #d32f2f;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #8fa0ac;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.6rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+    left: 14px;
+    color: #a0aec0;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 14px 14px 44px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input::placeholder {
+    color: #cbd5e1;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #0d4a45;
+    box-shadow: 0 0 0 3px rgba(13, 74, 69, 0.1);
+}
+
+.submit-auth-btn {
+    width: 100%;
+    background-color: #0b3d39;
+    /* Very dark teal */
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(11, 61, 57, 0.2);
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-auth-btn:hover:not(:disabled) {
+    background-color: #072e2b;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(11, 61, 57, 0.3);
+}
+
+.submit-auth-btn.register {
+    background-color: #059669;
+    /* Emerald green for register */
+    box-shadow: 0 8px 20px rgba(5, 150, 105, 0.2);
+}
+
+.submit-auth-btn.register:hover:not(:disabled) {
+    background-color: #047857;
+}
+
+.submit-auth-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.toggle-auth-link {
+    text-align: center;
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+    color: #0d4a45;
+    font-weight: 600;
+}
+
+.toggle-auth-link span {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.section-divider {
+    text-align: center;
+    position: relative;
+    margin: 2rem 0 1rem;
+}
+
+.section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e2e8f0;
+    z-index: 0;
+}
+
+.section-divider span {
+    background: white;
+    padding: 0 15px;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+}
+
+.quick-login-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.quick-acc-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.quick-acc-btn:hover:not(:disabled) {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.quick-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.teacher-avatar {
+    background-color: #fef3c7;
+}
+
+.student-avatar {
+    background-color: #e0f2fe;
+}
+
+.quick-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.quick-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.quick-role {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.google-divider {
+    margin: 1.5rem 0 1.5rem;
+}
+
+.google-auth-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: white;
+    border: 1.5px solid #e2e8f0;
+    color: #475569;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.google-auth-btn img {
+    height: 22px;
+}
+
+.google-auth-btn:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .login-wrapper {
+        flex-direction: column;
+        margin: -1rem;
+    }
+
+    .login-brand-panel {
+        padding: 3rem 1.5rem;
+        min-height: 400px;
+    }
+
+    .brand-title {
+        font-size: 2.2rem;
+    }
+
+    .login-form-panel {
+        padding: 2.5rem 1.5rem;
+    }
+}

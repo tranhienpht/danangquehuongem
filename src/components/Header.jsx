@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BookOpen, Flag, Award, SquarePen, User } from 'lucide-react';
+import { Home, BookOpen, Flag, Award, SquarePen, User, LogIn } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 import './Header.css';
 
 const Header = () => {
+    const { currentUser } = useAuth();
     return (
         <header className="main-header">
             <div className="logo">

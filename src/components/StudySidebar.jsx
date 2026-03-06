@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Map, Mountain, PartyPopper, Utensils, Users, Landmark, Leaf } from 'lucide-react';
+import { Map, Mountain, PartyPopper, Utensils, Users, Landmark, Leaf, Smile } from 'lucide-react';
 import './StudySidebar.css';
 
 const StudySidebar = () => {
@@ -12,6 +12,7 @@ const StudySidebar = () => {
         { path: '/study/famous-people', label: 'Danh nhân', icon: <Users size={20} /> },
         { path: '/study/heritage', label: 'Di sản Đà Nẵng', icon: <Landmark size={20} /> },
         { path: '/study/environment', label: 'Bảo vệ môi trường', icon: <Leaf size={20} /> },
+        { path: '/study/doremon', label: 'Học cùng Doremon', icon: <Smile size={20} /> },
     ];
 
     return (

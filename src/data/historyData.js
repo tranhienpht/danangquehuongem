@@ -9,30 +9,51 @@ export const timelineEvents = [
 export const historicalFigures = [
     {
         id: 1,
-        name: "Nguyễn Tri Phương",
-        role: "",
-        description: "Nguyễn Tri Phương là một vị tướng tài ba của nước ta thời xưa. Ông đã chỉ huy quân đội chống lại giặc Pháp xâm lược để bảo vệ đất nước tại Đà Nẵng, Gia Định và Hà Nội.",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Nguyen_Tri_Phuong.jpg/600px-Nguyen_Tri_Phuong.jpg"
+        name: "Nguyễn Văn Thoại",
+        role: "Quan Đại Thần",
+        description: "Nguyễn Văn Thoại (Thoại Ngọc Hầu) quê ở Quảng Nam. Ông là danh tướng, nhà quản lý xuất sắc, có công lớn trong việc khai phá vùng đồng bằng sông Cửu Long và đào kênh Vĩnh Tế.",
+        image: "images/history/nguyen-van-thoai.jpg"
     },
     {
         id: 2,
-        name: "Ông Ích Khiêm",
-        role: "",
-        description: "Ông Ích Khiêm là người con ưu tú của quê hương Hòa Vang, Đà Nẵng. Ông rất thông minh, giỏi về chiến lược và đã có công lớn cùng nhân dân đánh đuổi giặc Pháp tại cửa biển Đà Nẵng.",
-        image: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Ong_Ich_Khiem.jpg"
+        name: "Phan Châu Trinh",
+        role: "Nhà cách mạng, Nhà thơ",
+        description: "Phan Châu Trinh quê ở Quảng Nam. Ông là người khởi xướng phong trào Duy Tân, khuyên Nhân dân chăm lo học hành, mở mang dân trí để cùng nhau xây dựng đất nước giàu mạnh.",
+        image: "images/history/phan-chau-trinh.jpg"
     },
     {
         id: 3,
-        name: "Phan Châu Trinh",
-        role: "",
-        description: "Phan Châu Trinh là một nhà thơ và nhà yêu nước lớn quê ở Quảng Nam. Ông luôn mong muốn người dân được học hành, mở mang kiến thức để cùng nhau xây dựng đất nước giàu mạnh.",
-        image: "https://upload.wikimedia.org/wikipedia/commons/3/36/Phan_Chu_Trinh.jpg"
+        name: "Hoàng Diệu",
+        role: "Lãnh binh, Quan nhà Nguyễn",
+        description: "Hoàng Diệu là quan đại thần tài năng, quê Điện Bàn, Quảng Nam. Ông là người yêu nước đầy dũng cảm, đã xả thân chỉ huy quân đội bảo vệ thành Hà Nội khi thực dân Pháp xâm lược.",
+        image: "images/history/hoang-dieu.jpg"
     },
     {
         id: 4,
-        name: "Huỳnh Thúc Khang",
-        role: "",
-        description: "Huỳnh Thúc Khang là một người yêu nước nổi tiếng quê ở Quảng Nam. Ông là một nhà sử học, nhà thơ và từng giữ chức Quyền Chủ tịch nước, luôn hết lòng vì dân vì nước.",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Huynh_Thuc_Khang.jpg/600px-Huynh_Thuc_Khang.jpg"
+        name: "Huỳnh Thúc Kháng",
+        role: "Nhà yêu nước, Nhà báo",
+        description: "Huỳnh Thúc Kháng là người yêu nước nổi tiếng quê ở Quảng Nam. Ông từng là nhà sử học, chủ bút báo Tiếng Dân và xuất sắc giữ chức Quyền Chủ tịch nước lúc khó khăn.",
+        image: "images/history/huynh-thuc-khang.jpg"
+    },
+    {
+        id: 5,
+        name: "Thái Phiên",
+        role: "Nhà cách mạng",
+        description: "Thái Phiên sinh ra tại Đà Nẵng, gắn bó với phong trào yêu nước ở vùng Trung Kỳ. Ông đã nhiệt thành lãnh đạo cuộc khởi nghĩa duy tân cứu nước chống Pháp.",
+        image: "images/history/thai-phien.jpg"
+    },
+    {
+        id: 6,
+        name: "Lê Văn Hiến",
+        role: "Bộ trưởng",
+        description: "Lê Văn Hiến sinh ra tại Đà Nẵng, một trí thức mang lý tưởng lớn. Ông giữ nhiều chức vụ quan trọng như Bộ trưởng trong Chính phủ, hết mình phục vụ vì công cuộc cách mạng.",
+        image: "images/history/le-van-hien.jpg"
+    },
+    {
+        id: 7,
+        name: "Võ Chí Công",
+        role: "Lãnh đạo xuất sắc",
+        description: "Võ Chí Công là nhà cách mạng xuất chúng quê Quảng Nam. Ông cống hiến to lớn cho công cuộc giải phóng miền Nam, sau này giữ vị trí Lãnh đạo cấp cao của Đảng và Nhà nước.",
+        image: "images/history/vo-chi-cong.jpeg"
     }
 ];
