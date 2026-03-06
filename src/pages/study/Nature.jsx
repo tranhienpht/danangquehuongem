@@ -103,7 +103,7 @@ const Nature = () => {
 
                     <div className="image-container my-4">
                         <img
-                            src={`${import.meta.env.BASE_URL}images/danang_map.png`}
+                            src={`${import.meta.env.BASE_URL}images/danang_map.webp`}
                             alt="Bản đồ vị trí thành phố Đà Nẵng trên bản đồ Việt Nam"
                             className="img-fluid rounded shadow-sm"
                             style={{ maxHeight: '400px', width: '100%', objectFit: 'contain' }}
