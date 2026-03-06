@@ -270,3 +270,16 @@
 .mb-0 {
     margin-bottom: 0 !important;
 }
+
+/* Image styling additions */
+.text-center {
+    text-align: center !important;
+}
+
+.image-caption {
+    font-style: italic;
+    color: #6b7280;
+    /* text-gray-500/600 */
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
