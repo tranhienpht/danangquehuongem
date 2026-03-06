@@ -27,13 +27,13 @@ const Profile = () => {
 
     // Default mock data if Firebase doesn't provide them fully
     const defaultAvatar = "https://cdn3d.iconscout.com/3d/premium/thumb/crab-3d-icon-download-in-png-blend-fbx-gltf-formats--animal-seafood-zodiac-astrology-wild-pack-nature-icons-8374880.png";
-    const displayName = currentUser.displayName || "Hoàng Ngọc Thiên Di";
+    const displayName = currentUser.displayName || "Nguyễn Văn An";
 
     // Generate a mock ID based on the user's UID to keep it consistent
     const mockId = currentUser.uid ? parseInt(currentUser.uid.replace(/\D/g, '').substring(0, 10)) || 1307893658 : 1307893658;
 
     // Extract account from email (e.g. thiendi.pht@... -> thiendi.pht)
-    const accountName = currentUser.email ? currentUser.email.split('@')[0] : "thiendi.pht";
+    const accountName = currentUser.email ? currentUser.email.split('@')[0] : "vanan.nguyen";
 
     return (
         <div className="profile-wrapper">

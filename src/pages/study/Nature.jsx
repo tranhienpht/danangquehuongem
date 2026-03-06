@@ -4,12 +4,17 @@ import './Nature.css';
 
 const Nature = () => {
     const [answer, setAnswer] = useState('');
+    const [feedback, setFeedback] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (answer.trim()) {
-            alert("Cảm ơn câu trả lời của em! Hãy chia sẻ với thầy cô và các bạn nhé.");
-            setAnswer('');
+            const normalizedAnswer = answer.toLowerCase().trim();
+            if (normalizedAnswer.includes('sông hàn') || normalizedAnswer.includes('cầu quay') || normalizedAnswer.includes('quay')) {
+                setFeedback({ type: 'success', message: 'Hoan hô! Em trả lời chính xác! Đó là Cầu Sông Hàn (Cầu Quay).' });
+            } else {
+                setFeedback({ type: 'error', message: 'Chưa chính xác rùi! Gợi ý: Đây là cây cầu quay đẩu tiên của Việt Nam nhé.' });
+            }
         }
     };
 
@@ -51,18 +56,35 @@ const Nature = () => {
                         <p className="bold-italic dark-green mt-1">(Là cây cầu gì?)</p>
                     </div>
 
-                    <form className="answer-form" onSubmit={handleSubmit}>
+                    <form className="answer-form" style={{ marginBottom: feedback ? '1rem' : '1.5rem' }} onSubmit={handleSubmit}>
                         <input
                             type="text"
                             className="answer-input"
                             placeholder="Nhập câu trả lời của em..."
                             value={answer}
-                            onChange={(e) => setAnswer(e.target.value)}
+                            onChange={(e) => {
+                                setAnswer(e.target.value);
+                                if (feedback) setFeedback(null);
+                            }}
                         />
                         <button type="submit" className="submit-btn dark-green-bg">
                             GỬI <Send size={16} className="send-icon" />
                         </button>
                     </form>
+
+                    {feedback && (
+                        <div className={`feedback-message ${feedback.type === 'success' ? 'success' : 'error'}`} style={{
+                            padding: '10px 15px',
+                            borderRadius: '8px',
+                            marginBottom: '1.5rem',
+                            backgroundColor: feedback.type === 'success' ? '#dcfce7' : '#fee2e2',
+                            color: feedback.type === 'success' ? '#166534' : '#991b1b',
+                            fontWeight: '500',
+                            border: `1px solid ${feedback.type === 'success' ? '#bbf7d0' : '#fecaca'}`
+                        }}>
+                            {feedback.message}
+                        </div>
+                    )}
 
                     <p className="instruction-text mb-4">
                         Hãy chia sẻ hiểu biết của em về các địa danh của Đà Nẵng hoặc về nơi em đang ở với các bạn.
@@ -78,6 +100,17 @@ const Nature = () => {
                         giáp tỉnh Sekong (Lào), phía Nam giáp tỉnh Quảng Ngãi và phía Đông giáp Biển Đông. Ngày 01/7/2025, Đà
                         Nẵng chính thức sáp nhập với tỉnh Quảng Nam, trở thành thành phố trực thuộc Trung ương có quy mô lớn.
                     </p>
+
+                    <div className="image-container my-4">
+                        <img
+                            src={`${import.meta.env.BASE_URL}images/danang_map.png`}
+                            alt="Bản đồ vị trí thành phố Đà Nẵng trên bản đồ Việt Nam"
+                            className="img-fluid rounded shadow-sm"
+                            style={{ maxHeight: '400px', width: '100%', objectFit: 'contain' }}
+                        />
+                        <p className="image-caption text-center mt-2 font-italic text-sm text-gray-600">Vị trí thành phố Đà Nẵng (Nguồn: Internet)</p>
+                    </div>
+
                     <p className="paragraph-text">
                         Thành phố hiện có diện tích tự nhiên khoảng 11.859,59 km², dân số 3.065.628 người (2025). Về hành chính, Đà
                         Nẵng được tổ chức thành 94 đơn vị cấp xã, gồm 23 phường, 70 xã và 1 đặc khu (Đặc khu Hoàng Sa).
@@ -93,6 +126,16 @@ const Nature = () => {
                         Đà Nẵng sau sáp nhập có địa hình rất đa dạng và rộng lớn. Miền núi chiếm diện tích đáng kể ở phía Tây và Tây Bắc, nơi địa hình cao, dốc, có nhiều dãy núi chạy từ nội địa ra đến sát biên giới với Lào, tạo thành vùng đệm hiểm trở, nhiều thung lũng và sông suối. Về phía Đông và Đông Nam là vùng đồng bằng, vùng ven biển mở rộng ra đến Biển Đông — với bờ biển dài và nhiều vịnh, cửa sông, bãi tắm đẹp. Độ cao thay đổi lớn: từ đường bờ biển gần mực nước biển lên tới các đỉnh núi cao (có nơi trên 1.500 m).
                     </p>
 
+                    <div className="image-container my-4">
+                        <img
+                            src={`${import.meta.env.BASE_URL}images/son_tra_peninsula.png`}
+                            alt="Địa hình bán đảo Sơn Trà và Vịnh Đà Nẵng"
+                            className="img-fluid rounded shadow-sm"
+                            style={{ maxHeight: '350px', width: '100%', objectFit: 'cover' }}
+                        />
+                        <p className="image-caption text-center mt-2 font-italic text-sm text-gray-600">Sự kết hợp giữa núi non hùng vĩ và biển xanh tại Đà Nẵng</p>
+                    </div>
+
                     <h3 className="sub-heading">b) Khí hậu</h3>
                     <p className="paragraph-text">
                         Thành phố Đà Nẵng nằm trong vùng khí hậu nhiệt đới ẩm gió mùa. Mỗi năm có 2 mùa rõ rệt: mùa mưa từ tháng 9 đến tháng 12 và mùa khô từ tháng 1 đến tháng 8. Hằng năm, nơi đây có những đợt rét mùa đông nhưng không đậm và không kéo dài. Những tháng cuối năm thường có mưa lớn và bão gây thiệt hại về người và của.
@@ -106,6 +149,16 @@ const Nature = () => {
                     <p className="paragraph-text">
                         Hệ thống sông phong phú, gồm sông Thu Bồn, Vu Gia, Yên, Túy Loan, Cu Đê, Cẩm Lệ, Vĩnh Điện… tạo thành mạng lưới chằng chịt, vừa cung cấp nước sản xuất, vừa thuận lợi cho giao thông và du lịch sinh thái.
                     </p>
+
+                    <div className="image-container my-4">
+                        <img
+                            src={`${import.meta.env.BASE_URL}images/han_river.png`}
+                            alt="Sông Hàn êm đềm chảy giữa lòng thành phố"
+                            className="img-fluid rounded shadow-sm"
+                            style={{ maxHeight: '350px', width: '100%', objectFit: 'cover' }}
+                        />
+                        <p className="image-caption text-center mt-2 font-italic text-sm text-gray-600">Sông Hàn - Biểu tượng thơ mộng của thành phố Đà Nẵng</p>
+                    </div>
                 </section>
 
                 {/* Lesson Content 3 */}
@@ -122,6 +175,16 @@ const Nature = () => {
                         Đà Nẵng có nhiều tài nguyên biển, rừng, cảnh quan, di sản văn hóa, lễ hội, nghệ thuật truyền thống,… hấp dẫn khách du lịch trong và ngoài nước.
                     </p>
 
+                    <div className="image-container my-4">
+                        <img
+                            src={`${import.meta.env.BASE_URL}images/golden_bridge.png`}
+                            alt="Cầu Vàng Bà Nà Hills thu hút du khách"
+                            className="img-fluid rounded shadow-sm"
+                            style={{ maxHeight: '400px', width: '100%', objectFit: 'cover' }}
+                        />
+                        <p className="image-caption text-center mt-2 font-italic text-sm text-gray-600">Cầu Vàng (Bà Nà Hills) - Điểm đến du lịch nổi tiếng thế giới</p>
+                    </div>
+
                     <h3 className="sub-heading">c) Nông nghiệp</h3>
                     <p className="paragraph-text">
                         Nông nghiệp ở Đà Nẵng chủ yếu là nghề trồng lúa nước. Bên cạnh đó còn phát triển thêm nghề trồng hoa và rau, củ, quả. Trong những năm gần đây, Đà Nẵng đã tập trung vào việc phát triển nông nghiệp công nghệ cao, áp dụng các phương pháp canh tác hiện đại nhằm tăng năng suất và chất lượng sản phẩm, đồng thời giảm thiểu tác động đến môi trường.
@@ -136,6 +199,16 @@ const Nature = () => {
                     <p className="paragraph-text">
                         Trong bối cảnh hiện nay, Đà Nẵng có nhiều nghề truyền thống đa dạng, nổi bật như các làng nghề gốm Thanh Hà, mộc Kim Bồng, lụa Duy Trinh, rau Trà Quế, đúc đồng Phước Kiều, và các sản phẩm của Hội An như đèn lồng, cao lầu, chiếu cói Kim Bồng, làng điêu khắc đá mỹ nghệ Non Nước, nước mắm Nam Ô, bánh tráng Túy Loan, làng chiếu Cẩm Nê, khô mè Cẩm Lệ,…
                     </p>
+
+                    <div className="image-container my-4">
+                        <img
+                            src={`${import.meta.env.BASE_URL}images/stone_sculpture.png`}
+                            alt="Sản phẩm điêu khắc đá mỹ nghệ Non Nước"
+                            className="img-fluid rounded shadow-sm"
+                            style={{ maxHeight: '350px', width: '100%', objectFit: 'cover' }}
+                        />
+                        <p className="image-caption text-center mt-2 font-italic text-sm text-gray-600">Đôi bàn tay tài hoa của nghệ nhân Làng đá mỹ nghệ Non Nước</p>
+                    </div>
                 </section>
 
                 {/* Lesson Content 4 removed as requested */}
