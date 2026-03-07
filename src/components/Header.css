@@ -17,9 +17,10 @@
     gap: 1rem;
 }
 
-.logo-icon {
-    font-size: 2rem;
-    color: #004d40;
+.logo-image {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
 }
 
 .logo h1 {

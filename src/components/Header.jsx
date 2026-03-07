@@ -9,7 +9,7 @@ const Header = () => {
     return (
         <header className="main-header">
             <div className="logo">
-                <div className="logo-icon">📍</div> {/* Placeholder for logo icon */}
+                <img src="/images/logo-danang.svg" alt="Logo Đà Nẵng" className="logo-image" />
                 <h1>ĐÀ NẴNG QUÊ HƯƠNG EM</h1>
             </div>
             <nav>
