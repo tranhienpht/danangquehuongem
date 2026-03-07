@@ -25,7 +25,7 @@ const Login = () => {
             } else {
                 await signup(email, password);
             }
-            navigate('/profile');
+            navigate('/');
         } catch (err) {
             setError(isLogin ? 'Không thể đăng nhập. Vui lòng kiểm tra lại tài khoản!' : 'Lỗi khi tạo tài khoản. Mật khẩu phải từ 6 ký tự.');
             console.error(err);
@@ -39,7 +39,7 @@ const Login = () => {
             setError('');
             setLoading(true);
             await loginWithGoogle();
-            navigate('/profile');
+            navigate('/');
         } catch (err) {
             setError('Lỗi khi đăng nhập Google.');
             console.error(err);
@@ -56,12 +56,12 @@ const Login = () => {
         setLoading(true);
         try {
             await login(targetEmail, targetPass);
-            navigate('/profile');
+            navigate('/');
         } catch (err) {
             // If accounts don't exist yet, we can create them on the fly for the sake of demo:
             try {
                 await signup(targetEmail, targetPass);
-                navigate('/profile');
+                navigate('/');
             } catch (signupErr) {
                 setError('Lối đăng nhập nhanh không khả dụng.');
                 console.error(signupErr);
