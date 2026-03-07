@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Send, User, Bot, Sparkles, Globe, ExternalLink, MessageSquare } from 'lucide-react';
+import { X, Minus, Send, User, Bot, Sparkles, Globe, ExternalLink, MessageSquare } from 'lucide-react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import AiAssistant from './AiAssistant';
 import { festivalsData } from '../data/festivalsData';
@@ -9,7 +9,7 @@ import './Chatbot.css';
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { sender: 'bot', text: 'Chào bạn! Mình là Trợ lý Đà Nẵng, người bạn đồng hành của bạn đây. Mình sẵn sàng hướng dẫn và trả lời nhanh mọi câu hỏi về Đà Nẵng, bạn muốn tìm hiểu gì nào?' }
+        { sender: 'bot', text: 'Chào bạn! Mình là trợ lý thông minh Đà Nẵng. Bạn muốn hỏi gì, hãy đặt câu hỏi nhé! 🤖' }
     ]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
@@ -60,38 +60,39 @@ const Chatbot = () => {
         setIsTyping(true);
 
         try {
-            const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-            if (!apiKey) {
-                throw new Error("Missing API Key");
-            }
-
-            // Using @google/generative-ai SDK
-            const genAI = new GoogleGenerativeAI(apiKey);
-
-            // Use gemini-pro as a safe, globally available fallback for older API Keys
-            const modelName = "gemini-pro";
-
-            const model = genAI.getGenerativeModel({
-                model: modelName,
-                systemInstruction: `Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.\n\nQUY TẮC TRẢ LỜI:\n1. Cấu trúc Bao trùm -> Cụ thể: Luôn mở đầu bằng một câu khái quát chung, mở rộng vấn đề, sau đó mới liệt kê hoặc đi vào chi tiết (Ví dụ: "Đà Nẵng có rất nhiều khu du lịch nổi tiếng... Một trong số đó phải kể đến: Bà Nà Hill..."). Giữ độ dài vừa phải.\n2. Ngôn ngữ vui vẻ, thân thiện (xưng 'mình' và 'bạn'), dễ hiểu với học sinh tiểu học.\n3. Ưu tiên dùng 'Dữ liệu về Đà Nẵng' dưới đây. Đặc biệt lưu ý việc từ 1/7/2025 sáp nhập tỉnh Quảng Nam vào thành phố Đà Nẵng.\n\nDữ liệu về Đà Nẵng:\n${getContextData()}\n\nNếu không có thông tin, hãy dùng kiến thức chung nhưng phải cực kỳ ngắn gọn và cùng giọng điệu này.`,
+            // Thay vì gọi trực tiếp Google, ta gọi API trung gian (Backend proxy)
+            const response = await fetch("http://localhost:3001/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: userMsg,
+                    modelName: "gemini-2.5-flash", // Mô hình hỗ trợ mới nhất
+                    systemInstruction: `Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.\n\nQUY TẮC TRẢ LỜI CỰC KỲ QUAN TRỌNG:\n1. Ngắn gọn: Giới hạn câu trả lời tối đa trong khoảng 1-2 câu ngắn.\n2. Trọng tâm: Đi thẳng vào vấn đề, loại bỏ các diễn giải dài dòng.\n3. Ngôn ngữ: Sử dụng từ ngữ đơn giản, gần gũi và vui vẻ như một người bạn (xưng 'mình' và 'bạn').\n4. Dữ liệu: Tuyệt đối ưu tiên dùng 'Dữ liệu về Đà Nẵng' dưới đây. Lưu ý quan trọng là từ ngày 1/7/2025 sáp nhập tỉnh Quảng Nam vào thành phố Đà Nẵng.\n\nDữ liệu về Đà Nẵng:\n${getContextData()}`
+                })
             });
 
-            const result = await model.generateContent(userMsg);
-            const response = await result.response;
-            const text = response.text() || "Xin lỗi bạn, mình không phản hồi được. Bạn thử lại nhé!";
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Lỗi phản hồi từ máy chủ");
+            }
+
+            const data = await response.json();
+            const text = data.text || "Xin lỗi bạn, mình không phản hồi được. Bạn thử lại nhé!";
 
             setMessages(prev => [...prev, { sender: 'bot', text }]);
 
         } catch (error) {
             console.error("Chat Error:", error);
             let errorText = "Lỗi kết nối rồi bạn ơi!";
-            if (error.message && error.message.includes("Missing API Key")) {
-                errorText = "Chưa có cấu hình API Key. Bạn nhờ thầy cô kiểm tra giúp nhé!";
-            } else if (error.message && (error.message.includes("404") || error.message.includes("not found"))) {
-                errorText = `Không tìm thấy mô hình AI. Thầy cô hãy cập nhật code lấy model mới nhất nhé. Lỗi: ${error.message}`;
+
+            if (error.message.includes("Failed to fetch")) {
+                errorText = "Không thể kết nối đến Máy chủ (Server) AI. Bạn hãy chắc chắn đã chạy lệnh `node server.js` nhé!";
             } else {
-                errorText = `Lỗi kết nối: ${error.message || "Không xác định"}. Bạn thử lại sau nhé!`;
+                errorText = `Lỗi hệ thống AI: ${error.message}. Thầy cô hãy kiểm tra lại cấu hình nhé!`;
             }
+
             setMessages(prev => [...prev, { sender: 'bot', text: errorText }]);
         } finally {
             setIsTyping(false);
@@ -121,9 +122,17 @@ const Chatbot = () => {
                                 <span className="bot-role">Hệ thống AI Lớp 4</span>
                             </div>
                         </div>
-                        <button onClick={() => setIsOpen(false)} className="close-button">
-                            <X size={20} />
-                        </button>
+                        <div className="header-actions">
+                            <button onClick={() => setIsOpen(false)} className="action-button minimize-button" title="Thu nhỏ (Giữ lại nội dung)">
+                                <Minus size={20} />
+                            </button>
+                            <button onClick={() => {
+                                setIsOpen(false);
+                                setMessages([{ sender: 'bot', text: 'Chào bạn! Mình là trợ lý thông minh Đà Nẵng. Bạn muốn hỏi gì, hãy đặt câu hỏi nhé! 🤖' }]);
+                            }} className="action-button close-button" title="Đóng (Xóa nội dung tin nhắn)">
+                                <X size={20} />
+                            </button>
+                        </div>
                     </div>
 
                     {/* Messages Area */}

@@ -18,7 +18,7 @@ const AiAssistant = ({ onClick }) => {
                 </div>
             </div>
             <div className="ai-tooltip">
-                Chat với tớ nhé!
+                Bạn muốn hỏi tớ điều gì?
             </div>
         </div>
     );
