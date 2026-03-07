@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { missions } from '../data/missionsData';
 import './Tasks.css';
 import QuizModern from '../components/QuizModern';
-import QuizCuisine from '../components/QuizCuisine'; // Add the import
-import { Lock, ChevronRight } from 'lucide-react';
+import { Lock, Unlock } from 'lucide-react';
 
 const Tasks = () => {
     const [unlockedLevel, setUnlockedLevel] = useState(1);
@@ -45,7 +44,7 @@ const Tasks = () => {
                             src="/danangquehuongem/cooking-game.html"
                             title="Đi Chợ Nấu Ăn"
                             className="w-full h-full border-none"
-                            onLoad={(e) => {
+                            onLoad={() => {
                                 // Add listener for complete message from iframe
                                 const handleMessage = (event) => {
                                     if (event.data === 'cooking-game-complete') {
@@ -81,7 +80,7 @@ const Tasks = () => {
         );
     }
 
-    // 2. HOME SCREEN (Mission Hub) - NEW GRID LAYOUT
+    // 2. HOME SCREEN (Mission Hub) - NEW LIST LAYOUT
     return (
         <div className="tasks-page home-screen">
             <div className="tasks-header">
@@ -89,45 +88,43 @@ const Tasks = () => {
                 <p className="tasks-subtitle">Hoàn thành 5 thử thách để trở thành Đại sứ Du lịch nhé!</p>
             </div>
 
-            <div className="missions-grid">
+            <div className="missions-list">
                 {missions.map((mission) => {
                     const isLocked = mission.id > unlockedLevel;
 
                     return (
                         <div
                             key={mission.id}
-                            className={`mission-card ${isLocked ? 'locked' : ''} ${mission.id < unlockedLevel ? 'completed' : ''}`}
+                            className={`mission-row row-${mission.id} ${isLocked ? 'locked' : ''} ${mission.id < unlockedLevel ? 'completed' : ''}`}
                             onClick={() => {
                                 if (isLocked || mission.id < unlockedLevel) return;
                                 handleStartMission(mission);
                             }}
                         >
-                            <div className={`card-icon-box icon-bg-${(mission.id - 1) % 5 + 1}`}>
-                                {isLocked ? <Lock size={32} /> : <mission.icon size={32} />}
+                            <div className="mission-left">
+                                <span className="mission-text">NHIỆM VỤ</span>
+                                <div className="mission-number-wrapper">
+                                    <div className="mission-number">0{mission.id}</div>
+                                </div>
                             </div>
 
-                            <div className="card-content">
-                                <span className="mission-label">NHIỆM VỤ 0{mission.id}</span>
-                                <h3 className="mission-title">{mission.title}</h3>
-                                <p className="mission-desc">
-                                    {isLocked ? "Hoàn thành nhiệm vụ trước để mở khóa." : mission.description}
-                                </p>
-                            </div>
-
-                            <div className="card-action">
-                                {isLocked ? (
-                                    <span className="btn-start" style={{ color: '#94a3b8', cursor: 'not-allowed' }}>
-                                        ĐANG KHÓA
-                                    </span>
-                                ) : mission.id < unlockedLevel ? (
-                                    <span className="btn-start" style={{ color: '#10b981', fontWeight: 'bold' }}>
-                                        ✓ ĐÃ HOÀN THÀNH
-                                    </span>
-                                ) : (
-                                    <button className="btn-start">
-                                        CHINH PHỤC NGAY <ChevronRight size={14} strokeWidth={3} />
-                                    </button>
-                                )}
+                            <div className="mission-right">
+                                <h3 className="mission-title-row">{mission.title.toUpperCase()}</h3>
+                                <div className="mission-status-row">
+                                    {isLocked ? (
+                                        <>
+                                            <Lock size={16} /> <span>Đang khoá</span>
+                                        </>
+                                    ) : mission.id < unlockedLevel ? (
+                                        <>
+                                            <Unlock size={16} /> <span>Đã hoàn thành</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Unlock size={16} /> <span>Chinh phục ngay!</span>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     );

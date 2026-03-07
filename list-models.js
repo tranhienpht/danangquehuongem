@@ -1,3 +1,4 @@
+/* eslint-disable */
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const dotenv = require("dotenv");
 

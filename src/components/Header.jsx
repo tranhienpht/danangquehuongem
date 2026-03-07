@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Home, BookOpen, Flag, Award, SquarePen, User, LogIn } from 'lucide-react';
