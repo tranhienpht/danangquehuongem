@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Home, BookOpen, Flag, Award, SquarePen, User, LogIn } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import './Header.css';
@@ -8,10 +8,10 @@ const Header = () => {
     const { currentUser } = useAuth();
     return (
         <header className="main-header">
-            <div className="logo">
+            <Link to="/" className="logo">
                 <img src="/images/logo-danang.svg" alt="Logo Đà Nẵng" className="logo-image" />
                 <h1>ĐÀ NẴNG QUÊ HƯƠNG EM</h1>
-            </div>
+            </Link>
             <nav>
                 <NavLink to="/" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <Home size={24} />
