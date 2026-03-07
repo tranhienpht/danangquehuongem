@@ -16,6 +16,7 @@ import Map3D from './pages/study/Map3D';
 import Festivals from './pages/study/Festivals';
 import FestivalDetail from './pages/study/FestivalDetail';
 import Chatbot from './components/Chatbot';
+import VisitorCounter from './components/VisitorCounter';
 import Cuisine from './pages/study/Cuisine';
 import { Heritage, Environment } from './pages/study/Placeholders';
 import Doremon from './pages/study/Doremon';
@@ -40,6 +41,7 @@ const Layout = () => {
       </main>
       <Footer />
       <Chatbot />
+      <VisitorCounter />
     </div>
   );
 };

@@ -1,0 +1,150 @@
+.visitor-counter-container {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 1000;
+    background-color: var(--primary-color, #00897b);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    color: white;
+    width: 160px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    border: 3px solid #ffb74d;
+    /* Yellow border */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.visitor-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: #ffd54f;
+    /* Light yellow text */
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.chart-icon {
+    /* To mimic the bar chart icon in image */
+    background: linear-gradient(90deg, #81c784 33%, #f06292 33% 66%, #64b5f6 66%);
+    border-radius: 4px;
+    padding: 2px;
+    color: white;
+    /* Hide the standard lucide svg lines if possible, or color them */
+    stroke: transparent;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Fallback for lucide icon */
+.chart-icon line {
+    stroke-width: 4 !important;
+}
+
+.chart-icon line:nth-child(1) {
+    stroke: #e0f2f1;
+}
+
+.chart-icon line:nth-child(2) {
+    stroke: #fce4ec;
+}
+
+.chart-icon line:nth-child(3) {
+    stroke: #e3f2fd;
+}
+
+
+
+.visitor-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 0.8rem;
+}
+
+.visitor-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.stat-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.95;
+}
+
+.stat-value {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Green pulsing dot for online status */
+.online-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #69f0ae;
+    /* vibrant green */
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #69f0ae;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(105, 240, 174, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(105, 240, 174, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(105, 240, 174, 0);
+    }
+}
+
+/* Make component responsive if needed */
+@media (max-width: 768px) {
+    .visitor-counter-container {
+        left: 1rem;
+        bottom: 1rem;
+        width: 140px;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .visitor-header {
+        font-size: 0.9rem;
+    }
+
+    .stat-row {
+        font-size: 0.85rem;
+    }
+}

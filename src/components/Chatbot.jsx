@@ -27,6 +27,14 @@ const Chatbot = () => {
     const getContextData = () => {
         let context = "Dữ liệu về Đà Nẵng:\n\n";
 
+        // Add Geography
+        context += "Địa lý và Ranh giới:\n";
+        context += "Từ 1/7/2025, Đà Nẵng tiếp giáp với 3 tỉnh:\n";
+        context += "- Phía Bắc: Giáp tỉnh Thừa Thiên Huế.\n";
+        context += "- Phía Nam/Tây Nam: Giáp tỉnh Quảng Ngãi và Kon Tum.\n";
+        context += "- Phía Tây: Giáp nước Cộng hòa Dân chủ Nhân dân Lào.\n";
+        context += "- Phía Đông: Giáp Biển Đông.\n\n";
+
         // Add Festivals
         context += "Lễ hội:\n";
         if (festivalsData.national) {
@@ -69,7 +77,7 @@ const Chatbot = () => {
                 body: JSON.stringify({
                     message: userMsg,
                     modelName: "gemini-2.5-flash", // Mô hình hỗ trợ mới nhất
-                    systemInstruction: `Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.\n\nQUY TẮC TRẢ LỜI CỰC KỲ QUAN TRỌNG:\n1. Ngắn gọn: Giới hạn câu trả lời tối đa trong khoảng 1-2 câu ngắn.\n2. Trọng tâm: Đi thẳng vào vấn đề, loại bỏ các diễn giải dài dòng.\n3. Ngôn ngữ: Sử dụng từ ngữ đơn giản, gần gũi và vui vẻ như một người bạn (xưng 'mình' và 'bạn').\n4. Dữ liệu: Tuyệt đối ưu tiên dùng 'Dữ liệu về Đà Nẵng' dưới đây. Lưu ý quan trọng là từ ngày 1/7/2025 sáp nhập tỉnh Quảng Nam vào thành phố Đà Nẵng.\n\nDữ liệu về Đà Nẵng:\n${getContextData()}`
+                    systemInstruction: `Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.\n\nQUY TẮC TRẢ LỜI CỰC KỲ QUAN TRỌNG:\n1. Ngắn gọn: Thường trả lời 1-2 câu ngắn. TUY NHIÊN, nếu câu trả lời chứa danh sách (như vị trí địa lý, ranh giới), BẮT BUỘC giữ nguyên các gạch đầu dòng và liệt kê đầy đủ để học sinh dễ đọc.\n2. Trọng tâm: Đi thẳng vào vấn đề, không giải thích dài dòng.\n3. Ngôn ngữ: Sử dụng từ ngữ đơn giản, gần gũi và vui vẻ (xưng 'mình' và 'bạn').\n4. Dữ liệu: Lấy tuyệt đối 100% từ 'Dữ liệu về Đà Nẵng' dưới đây. Đặc biệt từ 1/7/2025 sáp nhập Quảng Nam, phải nhớ rõ ranh giới mới.\n\nDữ liệu về Đà Nẵng:\n${getContextData()}`
                 })
             });
 
