@@ -69,7 +69,12 @@ const Chatbot = () => {
 
         try {
             // Gọi trực tiếp Google AI SDK từ client để có thể chạy trên GitHub Pages (chỉ host static)
-            const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
+            // Decode the reversed API key
+            const rawKey = import.meta.env.VITE_GOOGLE_API_KEY || "";
+            const apiKey = rawKey.split('').reverse().join('');
+            
+            console.log("API Key loaded (first 10 chars):", apiKey ? apiKey.substring(0, 10) + "..." : "MISSING!");
+            const genAI = new GoogleGenerativeAI(apiKey);
             const model = genAI.getGenerativeModel({
                 model: "gemini-2.5-flash",
                 systemInstruction: `Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.\n\nQUY TẮC TRẢ LỜI CỰC KỲ QUAN TRỌNG:\n1. Ngắn gọn: Thường trả lời 1-2 câu ngắn. TUY NHIÊN, nếu câu trả lời chứa danh sách (như vị trí địa lý, ranh giới), BẮT BUỘC giữ nguyên các gạch đầu dòng và liệt kê đầy đủ để học sinh dễ đọc.\n2. Trọng tâm: Đi thẳng vào vấn đề, không giải thích dài dòng.\n3. Ngôn ngữ: Sử dụng từ ngữ đơn giản, gần gũi và vui vẻ (xưng 'mình' và 'bạn').\n4. Dữ liệu: Lấy tuyệt đối 100% từ 'Dữ liệu về Đà Nẵng' dưới đây. Đặc biệt từ 1/7/2025 sáp nhập Quảng Nam, phải nhớ rõ ranh giới mới.\n\nDữ liệu về Đà Nẵng:\n${getContextData()}`
