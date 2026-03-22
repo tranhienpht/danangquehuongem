@@ -1,10 +1,11 @@
 /* Global Page Layout */
 .tasks-page {
     min-height: 100vh;
-    background-color: #fefce8;
-    /* Light cream background matching image */
-    background-image: radial-gradient(#f1f5f9 1px, transparent 1px);
-    background-size: 20px 20px;
+    /* Soft oceanic/sky gradient with subtle grid dots */
+    background-color: #f0f9ff;
+    background-image: radial-gradient(#bae6fd 1.5px, transparent 1.5px), linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%);
+    background-size: 25px 25px, 100% 100%;
+    background-attachment: fixed;
     padding: 2rem 1rem;
     font-family: 'Roboto', sans-serif;
     color: #1f2937;
@@ -34,10 +35,13 @@
 .missions-list {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 15px;
+    /* Increased gap */
     max-width: 900px;
     margin: 0 auto;
     background: transparent;
+    padding: 20px;
+    /* Add padding so rounded corners don't get cut off */
 }
 
 .mission-row {
@@ -47,12 +51,19 @@
     cursor: pointer;
     background: white;
     position: relative;
+    border-radius: 12px;
+    /* Added border-radius */
     overflow: hidden;
-    transition: filter 0.2s ease;
+    /* Ensure children don't bleed out */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /* Added slight shadow */
+    transition: filter 0.2s ease, transform 0.2s ease;
 }
 
 .mission-row:hover {
     filter: brightness(0.95);
+    transform: translateY(-2px);
+    /* Slight lift on hover */
 }
 
 .mission-row.locked {
@@ -130,7 +141,7 @@
 }
 
 .mission-title-row {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Nunito', 'Roboto', system-ui, -apple-system, sans-serif;
     font-size: 1.7rem;
     color: #0d4675;
     margin: 0 0 5px 0;

@@ -68,26 +68,25 @@ const Chatbot = () => {
         setIsTyping(true);
 
         try {
-            // Thay vì gọi trực tiếp Google, ta gọi API trung gian (Backend proxy)
-            const response = await fetch("http://localhost:3001/api/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    message: userMsg,
-                    modelName: "gemini-2.5-flash", // Mô hình hỗ trợ mới nhất
-                    systemInstruction: `Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.\n\nQUY TẮC TRẢ LỜI CỰC KỲ QUAN TRỌNG:\n1. Ngắn gọn: Thường trả lời 1-2 câu ngắn. TUY NHIÊN, nếu câu trả lời chứa danh sách (như vị trí địa lý, ranh giới), BẮT BUỘC giữ nguyên các gạch đầu dòng và liệt kê đầy đủ để học sinh dễ đọc.\n2. Trọng tâm: Đi thẳng vào vấn đề, không giải thích dài dòng.\n3. Ngôn ngữ: Sử dụng từ ngữ đơn giản, gần gũi và vui vẻ (xưng 'mình' và 'bạn').\n4. Dữ liệu: Lấy tuyệt đối 100% từ 'Dữ liệu về Đà Nẵng' dưới đây. Đặc biệt từ 1/7/2025 sáp nhập Quảng Nam, phải nhớ rõ ranh giới mới.\n\nDữ liệu về Đà Nẵng:\n${getContextData()}`
-                })
+            // Gọi trực tiếp Google AI SDK từ client để có thể chạy trên GitHub Pages (chỉ host static)
+            const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
+            const model = genAI.getGenerativeModel({
+                model: "gemini-2.5-flash",
+                systemInstruction: `Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.\n\nQUY TẮC TRẢ LỜI CỰC KỲ QUAN TRỌNG:\n1. Ngắn gọn: Thường trả lời 1-2 câu ngắn. TUY NHIÊN, nếu câu trả lời chứa danh sách (như vị trí địa lý, ranh giới), BẮT BUỘC giữ nguyên các gạch đầu dòng và liệt kê đầy đủ để học sinh dễ đọc.\n2. Trọng tâm: Đi thẳng vào vấn đề, không giải thích dài dòng.\n3. Ngôn ngữ: Sử dụng từ ngữ đơn giản, gần gũi và vui vẻ (xưng 'mình' và 'bạn').\n4. Dữ liệu: Lấy tuyệt đối 100% từ 'Dữ liệu về Đà Nẵng' dưới đây. Đặc biệt từ 1/7/2025 sáp nhập Quảng Nam, phải nhớ rõ ranh giới mới.\n\nDữ liệu về Đà Nẵng:\n${getContextData()}`
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || "Lỗi phản hồi từ máy chủ");
-            }
+            const history = messages.slice(1).map(m => ({
+                role: m.sender === 'user' ? 'user' : 'model',
+                parts: [{ text: m.text }]
+            }));
 
-            const data = await response.json();
-            const text = data.text || "Xin lỗi bạn, mình không phản hồi được. Bạn thử lại nhé!";
+            const chat = model.startChat({ history });
+            const result = await chat.sendMessage(userMsg);
+            const text = result.response.text();
+
+            if (!text) {
+                throw new Error("Lỗi phản hồi từ máy chủ");
+            }
 
             setMessages(prev => [...prev, { sender: 'bot', text }]);
 
@@ -95,8 +94,8 @@ const Chatbot = () => {
             console.error("Chat Error:", error);
             let errorText = "Lỗi kết nối rồi bạn ơi!";
 
-            if (error.message.includes("Failed to fetch")) {
-                errorText = "Không thể kết nối đến Máy chủ (Server) AI. Bạn hãy chắc chắn đã chạy lệnh `node server.js` nhé!";
+            if (error.message.includes("API key not valid") || error.message.includes("API_KEY_INVALID")) {
+                errorText = "Lỗi xác thực API Key. Bạn hãy kiểm tra lại file .env nhé!";
             } else {
                 errorText = `Lỗi hệ thống AI: ${error.message}. Thầy cô hãy kiểm tra lại cấu hình nhé!`;
             }

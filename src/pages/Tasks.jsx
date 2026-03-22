@@ -33,17 +33,17 @@ const Tasks = () => {
         return (
             <div className="tasks-page h-screen w-full flex flex-col items-center justify-center p-0 m-0 overflow-hidden bg-slate-50 relative">
                 {playingMission.id === 3 ? (
-                    <>
+                    <div className="absolute inset-0 w-full h-full bg-white z-40">
                         <button
                             onClick={handleBackToHub}
-                            className="absolute top-4 left-4 z-50 bg-white/80 hover:bg-white text-orange-600 font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300"
+                            className="absolute top-4 left-4 z-50 bg-white/90 hover:bg-white text-orange-600 font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 border-2 border-orange-200"
                         >
                             ← Trở về
                         </button>
                         <iframe
-                            src="/danangquehuongem/cooking-game.html"
+                            src={`${import.meta.env.BASE_URL}cooking-game.html`}
                             title="Đi Chợ Nấu Ăn"
-                            className="w-full h-full border-none"
+                            className="w-full h-full border-none block"
                             onLoad={() => {
                                 // Add listener for complete message from iframe
                                 const handleMessage = (event) => {
@@ -62,7 +62,7 @@ const Tasks = () => {
                                 return () => window.removeEventListener('message', handleMessage);
                             }}
                         />
-                    </>
+                    </div>
                 ) : (
                     <QuizModern
                         mission={playingMission}

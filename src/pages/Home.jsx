@@ -1,8 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import './Home.css';
 
 const Home = () => {
+    const { currentUser } = useAuth();
+
+    if (!currentUser) {
+        return <Navigate to="/login" replace />;
+    }
+
     return (
         <div className="home-page">
             <section className="hero-section">
