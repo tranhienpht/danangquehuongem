@@ -65,7 +65,7 @@ Lịch sử:
 `),w+=`
 Nhân vật lịch sử:
 `,Hd&&Hd.forEach(C=>w+=`- ${C.name}: ${C.description}
-`),w},b=async()=>{if(!o.trim()||u)return;const w=o;r(C=>[...C,{sender:"user",text:w}]),l(""),f(!0);try{const j=new i6(void 0).getGenerativeModel({model:"gemini-2.5-flash",systemInstruction:`Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.
+`),w},b=async()=>{if(!o.trim()||u)return;const w=o;r(C=>[...C,{sender:"user",text:w}]),l(""),f(!0);try{const j=new i6("AIzaSyDZDrKyUPkRkbI17UNYFB9Yt6BhTVtNaNI").getGenerativeModel({model:"gemini-2.5-flash",systemInstruction:`Bạn là 'Trợ lý Đà Nẵng', người bạn đồng hành của học sinh lớp 4.
 
 QUY TẮC TRẢ LỜI CỰC KỲ QUAN TRỌNG:
 1. Ngắn gọn: Thường trả lời 1-2 câu ngắn. TUY NHIÊN, nếu câu trả lời chứa danh sách (như vị trí địa lý, ranh giới), BẮT BUỘC giữ nguyên các gạch đầu dòng và liệt kê đầy đủ để học sinh dễ đọc.
