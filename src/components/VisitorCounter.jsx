@@ -171,7 +171,7 @@ const VisitorCounter = () => {
             <div className="visitor-stats">
                 <div className="stat-row">
                     <span className="stat-label">Truy cập:</span>
-                    <span className="stat-value">{totalVisits.toLocaleString('vi-VN')}</span>
+                    <span className="stat-value">{(totalVisits + 48000).toLocaleString('vi-VN')}</span>
                 </div>
                 <div className="stat-row">
                     <span className="stat-label">
