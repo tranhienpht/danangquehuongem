@@ -7,7 +7,7 @@ import './Nature.css'; // Import Nature styles for the objective box
 const FamousPeople = () => {
     return (
         <div className="history-page textbook-style">
-            <div className="textbook-container">
+            <div className="textbook-container" style={{ maxWidth: '1200px' }}>
                 <header className="page-header history-header">
                     <h1>Danh nhân Đà Nẵng</h1>
                     <p>Những người con ưu tú của quê hương</p>
