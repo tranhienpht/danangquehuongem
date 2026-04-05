@@ -18,7 +18,9 @@ import FestivalDetail from './pages/study/FestivalDetail';
 import Chatbot from './components/Chatbot';
 import VisitorCounter from './components/VisitorCounter';
 import Cuisine from './pages/study/Cuisine';
-import { Heritage, Environment } from './pages/study/Placeholders';
+import Heritage from './pages/study/Heritage';
+import HeritageDetail from './pages/study/HeritageDetail';
+import { Environment } from './pages/study/Placeholders';
 import Doremon from './pages/study/Doremon';
 import Login from './pages/Login';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -74,6 +76,7 @@ const router = createHashRouter([
           { path: "famous-people", element: <FamousPeople /> },
           { path: "famous-people/:id", element: <FamousPeopleDetail /> },
           { path: "heritage", element: <Heritage /> },
+          { path: "heritage/:id", element: <HeritageDetail /> },
           { path: "environment", element: <Environment /> },
           { path: "doremon", element: <Doremon /> }
         ]
