@@ -3,7 +3,7 @@ export const heritageData = [
         id: 'ngu-hanh-son',
         name: 'Ngũ Hành Sơn',
         type: 'Di tích Lịch sử - Văn hóa và Danh thắng',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Marble_Mountains%2C_Danang.jpg/800px-Marble_Mountains%2C_Danang.jpg',
+        image: 'images/heritage/Ngu hanh son.jpg.png',
         location: 'Phường Hòa Hải, quận Ngũ Hành Sơn, TP. Đà Nẵng',
         shortDescription: 'Quần thể 5 ngọn núi đá vôi hùng vĩ mang tên Ngũ Hành, biểu tượng thiên nhiên và tâm linh của Đà Nẵng.',
         historicalSignificance: [
@@ -18,7 +18,7 @@ export const heritageData = [
         id: 'ma-nhai-ngu-hanh-son',
         name: 'Ma Nhai Ngũ Hành Sơn',
         type: 'Di sản Tư liệu Khu vực Châu Á - Thái Bình Dương',
-        image: 'https://cdn.hcmcpv.org.vn/res/news/2023/03/02-03-2023-da-nang-don-bang-cong-nhan-ma-nhai-tai-danh-thang-ngu-hanh-son-7A831E2A.jpg',
+        image: 'images/heritage/ma nhai ngu hanh son.jpg',
         location: 'Khắc trên vách đá tại quần thể Ngũ Hành Sơn, Đà Nẵng',
         shortDescription: 'Hệ thống các văn bản Hán - Nôm được khắc trực tiếp trên vách đá tại Ngũ Hành Sơn, lưu giữ nhiều giá trị lịch sử.',
         historicalSignificance: [
@@ -32,7 +32,7 @@ export const heritageData = [
         id: 'thanh-dien-hai',
         name: 'Thành Điện Hải',
         type: 'Di tích Lịch sử cấp Quốc gia đặc biệt',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Điện_Hải_đài.JPG/800px-Điện_Hải_đài.JPG',
+        image: 'images/heritage/thanh dien hai.jpg',
         location: 'Quận Hải Châu, TP. Đà Nẵng',
         shortDescription: 'Căn cứ quân sự kiên cố, ghi dấu những trận đánh oai hùng của nhân dân Đà Nẵng chống thực dân Pháp.',
         historicalSignificance: [
@@ -46,7 +46,7 @@ export const heritageData = [
         id: 'pho-co-hoi-an',
         name: 'Phố cổ Hội An',
         type: 'Di sản Văn hóa Thế giới',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Hoi_An_after_the_flood_%288339199343%29.jpg/800px-Hoi_An_after_the_flood_%288339199343%29.jpg',
+        image: 'images/heritage/pho co hoi an.jpg',
         location: 'Hạ lưu sông Thu Bồn, TP. Hội An, tỉnh Quảng Nam',
         shortDescription: 'Một đô thị cổ nhộn nhịp trong quá khứ, giữ sự nguyên vẹn hiếm có của kiến trúc gỗ và sự giao thoa văn hóa Đông Tây.',
         historicalSignificance: [
@@ -61,7 +61,7 @@ export const heritageData = [
         id: 'thanh-dia-my-son',
         name: 'Thánh địa Mỹ Sơn',
         type: 'Di sản Văn hóa Thế giới',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/M%E1%BB%B9_S%C6%A1n%2C_Vietnam_%2821%29.jpg/800px-M%E1%BB%B9_S%C6%A1n%2C_Vietnam_%2821%29.jpg',
+        image: 'images/heritage/thanh dia my son.jpg',
         location: 'Xã Duy Phú, huyện Duy Xuyên, tỉnh Quảng Nam',
         shortDescription: 'Dấu tích đền tháp kỳ vĩ của vương quốc Chăm Pa cổ xưa, tạc vào lịch sử với phong cách kiến trúc độc đáo.',
         historicalSignificance: [
