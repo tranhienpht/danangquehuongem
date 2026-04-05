@@ -58,5 +58,20 @@ export const environmentData = [
             'Giữ thái độ trang nghiêm, ăn mặc lịch sự khi bước vào những không gian thiêng liêng.'
         ],
         message: 'Di sản là cầu nối quá khứ với tương lai. Hãy là những đại sứ văn hóa mang hình ảnh đẹp trong mắt du khách thập phương.'
+    },
+    {
+        id: 'tai-che-stem',
+        name: 'Giáo dục STEM & Tái chế',
+        type: 'Sáng tạo xanh',
+        image: 'https://vtv1.mediacdn.vn/2019/11/5/photo-1-1572942445851458804791.jpg',
+        shortDescription: 'Ứng dụng kiến thức STEM để sáng tạo các sản phẩm tái chế hữu ích, đem lại cuộc sống mới cho rác thải sinh hoạt.',
+        whyMatters: 'Rác thải nhựa và vật liệu khó phân hủy nếu bị vứt bỏ sẽ làm ô nhiễm môi trường nghiêm trọng. Tuy nhiên, nếu biết cách tận dụng thông qua STEM (Khoa học, Công nghệ, Kỹ thuật, Toán học), chúng ta có thể biến rác thải thành những đồ dùng học tập, đồ chơi và mô hình khoa học giá trị, đồng thời rèn luyện tư duy sáng tạo.',
+        actions: [
+            'Thu gom chai nhựa, bìa carton, vỏ hộp sữa đã qua sử dụng, làm sạch để tái chế.',
+            'Áp dụng kiến thức STEM để chế tạo: mô hình xe chạy bằng lực đàn hồi, chậu cây thông minh tự tưới nước từ chai nhựa.',
+            'Tích cực tham gia các ngày hội tái chế, cuộc thi "Sáng tạo xanh" và mô hình "Đổi rác lấy cây" tại trường lớp.',
+            'Sử dụng rác thải hữu cơ dư thừa (rau củ gọt vỏ, bã trà) để ủ làm phân bón sinh học trồng cây ngay tại nhà.'
+        ],
+        message: 'Với kiến thức STEM, không có gì là rác thải vô dụng. Hãy dùng đôi tay khéo léo để hồi sinh những vật tưởng như bỏ đi!'
     }
 ];
