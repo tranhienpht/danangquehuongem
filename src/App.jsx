@@ -20,7 +20,8 @@ import VisitorCounter from './components/VisitorCounter';
 import Cuisine from './pages/study/Cuisine';
 import Heritage from './pages/study/Heritage';
 import HeritageDetail from './pages/study/HeritageDetail';
-import { Environment } from './pages/study/Placeholders';
+import Environment from './pages/study/Environment';
+import EnvironmentDetail from './pages/study/EnvironmentDetail';
 import Doremon from './pages/study/Doremon';
 import Login from './pages/Login';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -78,6 +79,7 @@ const router = createHashRouter([
           { path: "heritage", element: <Heritage /> },
           { path: "heritage/:id", element: <HeritageDetail /> },
           { path: "environment", element: <Environment /> },
+          { path: "environment/:id", element: <EnvironmentDetail /> },
           { path: "doremon", element: <Doremon /> }
         ]
       },
