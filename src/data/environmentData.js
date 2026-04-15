@@ -63,7 +63,7 @@ export const environmentData = [
         id: 'tai-che-stem',
         name: 'Giáo dục STEM & Tái chế',
         type: 'Sáng tạo xanh',
-        image: 'https://vtv1.mediacdn.vn/2019/11/5/photo-1-1572942445851458804791.jpg',
+        image: 'images/environment/stem & tai che.jpg',
         shortDescription: 'Ứng dụng kiến thức STEM để sáng tạo các sản phẩm tái chế hữu ích, đem lại cuộc sống mới cho rác thải sinh hoạt.',
         whyMatters: 'Rác thải nhựa và vật liệu khó phân hủy nếu bị vứt bỏ sẽ làm ô nhiễm môi trường nghiêm trọng. Tuy nhiên, nếu biết cách tận dụng thông qua STEM (Khoa học, Công nghệ, Kỹ thuật, Toán học), chúng ta có thể biến rác thải thành những đồ dùng học tập, đồ chơi và mô hình khoa học giá trị, đồng thời rèn luyện tư duy sáng tạo.',
         actions: [
