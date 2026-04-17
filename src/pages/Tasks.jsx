@@ -88,40 +88,49 @@ const Tasks = () => {
                 <p className="tasks-subtitle">Hoàn thành 5 thử thách để trở thành Đại sứ Du lịch nhé!</p>
             </div>
 
-            <div className="missions-list">
+            <div className="missions-grid">
                 {missions.map((mission) => {
                     const isLocked = mission.id > unlockedLevel;
+                    const IconComponent = mission.icon;
 
                     return (
                         <div
                             key={mission.id}
-                            className={`mission-row row-${mission.id} ${isLocked ? 'locked' : ''} ${mission.id < unlockedLevel ? 'completed' : ''}`}
+                            className={`mission-card card-${mission.id} ${isLocked ? 'locked' : ''} ${mission.id < unlockedLevel ? 'completed' : ''}`}
                             onClick={() => {
                                 if (isLocked || mission.id < unlockedLevel) return;
                                 handleStartMission(mission);
                             }}
                         >
-                            <div className="mission-left">
-                                <span className="mission-text">NHIỆM VỤ</span>
-                                <div className="mission-number-wrapper">
-                                    <div className="mission-number">0{mission.id}</div>
+                            {/* Top Ribbon */}
+                            <div className="mission-card-ribbon">
+                                <span className="ribbon-text">LEVEL {mission.id}</span>
+                            </div>
+                            
+                            {/* Card Body */}
+                            <div className="mission-card-body">
+                                <div className="mission-card-sub">Nhiệm vụ {mission.id}</div>
+                                <div className="mission-card-icon-wrapper">
+                                    <IconComponent size={70} strokeWidth={1.5} className="mission-card-icon" />
                                 </div>
+                                <div className="mission-card-title">{mission.title}</div>
+                                <div className="mission-card-desc">{mission.description}</div>
                             </div>
 
-                            <div className="mission-right">
-                                <h3 className="mission-title-row">{mission.title.toUpperCase()}</h3>
-                                <div className="mission-status-row">
+                            {/* Bottom Pill */}
+                            <div className="mission-card-footer">
+                                <div className="status-pill">
                                     {isLocked ? (
                                         <>
-                                            <Lock size={16} /> <span>Đang khoá</span>
+                                            <Lock size={14} className="status-icon" /> <span>Đang khoá</span>
                                         </>
                                     ) : mission.id < unlockedLevel ? (
                                         <>
-                                            <Unlock size={16} /> <span>Đã hoàn thành</span>
+                                            <Unlock size={14} className="status-icon" /> <span>Đã hoàn thành</span>
                                         </>
                                     ) : (
                                         <>
-                                            <Unlock size={16} /> <span>Chinh phục ngay!</span>
+                                            <Unlock size={14} className="status-icon" /> <span>Chinh phục ngay!</span>
                                         </>
                                     )}
                                 </div>

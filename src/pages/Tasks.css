@@ -31,221 +31,173 @@
     font-size: 1.1rem;
 }
 
-/* List Layout */
-.missions-list {
+/* Card Grid Layout */
+.missions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px 20px; /* 30px vertical gap for the pill drop, 20px horizontal gap */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 20px 40px 20px; /* extra bottom padding for pills */
+}
+
+.mission-card {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    /* Increased gap */
-    max-width: 900px;
-    margin: 0 auto;
-    background: transparent;
-    padding: 20px;
-    /* Add padding so rounded corners don't get cut off */
-}
-
-.mission-row {
-    display: flex;
-    height: 100px;
-    width: 100%;
-    cursor: pointer;
+    /* Adjust width for 3 cards per row: (100% - 40px gap) / 3 */
+    width: calc(33.333% - 14px);
+    max-width: 320px;
+    min-width: 250px;
     background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 15px rgba(0,0,0,0.05);
     position: relative;
-    border-radius: 12px;
-    /* Added border-radius */
-    overflow: hidden;
-    /* Ensure children don't bleed out */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    /* Added slight shadow */
-    transition: filter 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    overflow: visible; /* Need this so bottom pill can spill over */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.mission-row:hover {
-    filter: brightness(0.95);
-    transform: translateY(-2px);
-    /* Slight lift on hover */
+.mission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
-.mission-row.locked {
+.mission-card.locked {
+    cursor: not-allowed;
+    filter: grayscale(0.85) opacity(0.8);
+}
+
+.mission-card.completed {
     cursor: not-allowed;
 }
 
-.mission-row.completed {
-    cursor: not-allowed;
-    /* Có thể làm mờ thêm nếu thích: */
-    /* opacity: 0.85; */
-}
-
-.mission-left {
+/* Ribbon Header (Dải băng) */
+.mission-card-ribbon {
+    height: 55px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    width: 250px;
-    padding: 0 10px 0 25px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
     position: relative;
-    z-index: 2;
+    padding: 0 20px;
 }
 
-.mission-left::after {
+/* "Fold" effect */
+.mission-card-ribbon::after {
     content: '';
     position: absolute;
-    right: -30px;
-    /* Độ rộng của mũi tên */
-    top: 0;
-    width: 0;
-    height: 0;
-    border-top: 50px solid transparent;
-    /* Một nửa của 100px height */
-    border-bottom: 50px solid transparent;
-    border-left: 30px solid;
-    /* color inherited from class */
-    z-index: 2;
+    bottom: -12px;
+    right: -12px;
+    border-width: 12px 0 0 12px;
+    border-style: solid;
+    display: none; /* Giữ UI sạch theo phong cách minimal */
 }
 
-.mission-text {
-    font-size: 1.6rem;
+.ribbon-text {
     font-weight: 800;
-    color: white;
-    letter-spacing: 1px;
-}
-
-.mission-number-wrapper {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.mission-number {
-    background: white;
-    border-radius: 30px;
-    padding: 10px;
-    height: 60px;
-    min-width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 1.4rem;
-    font-weight: 900;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    letter-spacing: 1.5px;
 }
 
-.mission-right {
-    flex: 1;
+/* Card Body */
+.mission-card-body {
+    padding: 20px 20px 35px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-left: 55px;
-    /* Để lùi nội dung nhường chỗ cho mũi tên */
-    position: relative;
-    z-index: 1;
+    align-items: center;
+    text-align: center;
+    flex: 1;
 }
 
-.mission-title-row {
-    font-family: 'Nunito', 'Roboto', system-ui, -apple-system, sans-serif;
-    font-size: 1.7rem;
-    color: #0d4675;
-    margin: 0 0 5px 0;
-    line-height: 1.2;
+.mission-card-sub {
     font-weight: 800;
-    letter-spacing: 0.5px;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
 }
 
-.mission-status-row {
+.mission-card-icon-wrapper {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.mission-card-title {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.3;
+}
+
+.mission-card-desc {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.4;
+}
+
+/* Status Pill at the bottom */
+.mission-card-footer {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: -15px; 
+    width: 100%;
+    z-index: 10;
+}
+
+.status-pill {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: #000;
-    font-size: 1rem;
-    font-weight: 700;
-    font-style: italic;
-    opacity: 0.9;
+    gap: 6px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 3px solid white;
 }
 
-/* Row-specific colors */
-/* Row 1 */
-.row-1 .mission-left {
-    background-color: #8be4e0;
+.status-icon {
+    margin-top: -1px;
 }
 
-.row-1 .mission-left::after {
-    border-left-color: #8be4e0;
-}
+/* --- Row-specific Theme Colors --- */
+/* Card 1 */
+.card-1 .mission-card-ribbon { background-color: #64bd53; }
+.card-1 .mission-card-sub { color: #64bd53; }
+.card-1 .mission-card-icon { color: #64bd53; }
+.card-1 .status-pill { background-color: #64bd53; color: white; }
 
-.row-1 .mission-number {
-    color: #8be4e0;
-}
+/* Card 2 */
+.card-2 .mission-card-ribbon { background-color: #3498db; }
+.card-2 .mission-card-sub { color: #3498db; }
+.card-2 .mission-card-icon { color: #3498db; }
+.card-2 .status-pill { background-color: #3498db; color: white; }
 
-.row-1 .mission-right {
-    background-color: #f1fdff;
-}
+/* Card 3 */
+.card-3 .mission-card-ribbon { background-color: #e67e22; }
+.card-3 .mission-card-sub { color: #e67e22; }
+.card-3 .mission-card-icon { color: #e67e22; }
+.card-3 .status-pill { background-color: #e67e22; color: white; }
 
-/* Row 2 */
-.row-2 .mission-left {
-    background-color: #31c6c5;
-}
+/* Card 4 */
+.card-4 .mission-card-ribbon { background-color: #9b59b6; }
+.card-4 .mission-card-sub { color: #9b59b6; }
+.card-4 .mission-card-icon { color: #9b59b6; }
+.card-4 .status-pill { background-color: #9b59b6; color: white; }
 
-.row-2 .mission-left::after {
-    border-left-color: #31c6c5;
-}
+/* Card 5 */
+.card-5 .mission-card-ribbon { background-color: #1abc9c; }
+.card-5 .mission-card-sub { color: #1abc9c; }
+.card-5 .mission-card-icon { color: #1abc9c; }
+.card-5 .status-pill { background-color: #1abc9c; color: white; }
 
-.row-2 .mission-number {
-    color: #31c6c5;
-}
-
-.row-2 .mission-right {
-    background-color: #d8f5f5;
-}
-
-/* Row 3 */
-.row-3 .mission-left {
-    background-color: #3bb3df;
-}
-
-.row-3 .mission-left::after {
-    border-left-color: #3bb3df;
-}
-
-.row-3 .mission-number {
-    color: #3bb3df;
-}
-
-.row-3 .mission-right {
-    background-color: #c7ebf9;
-}
-
-/* Row 4 */
-.row-4 .mission-left {
-    background-color: #2777b7;
-}
-
-.row-4 .mission-left::after {
-    border-left-color: #2777b7;
-}
-
-.row-4 .mission-number {
-    color: #2777b7;
-}
-
-.row-4 .mission-right {
-    background-color: #b3cdef;
-}
-
-/* Row 5 */
-.row-5 .mission-left {
-    background-color: #123d6a;
-}
-
-.row-5 .mission-left::after {
-    border-left-color: #123d6a;
-}
-
-.row-5 .mission-number {
-    color: #123d6a;
-}
-
-.row-5 .mission-right {
-    background-color: #9cb1ce;
-}
 
 /* --- Game View Reuse & Adaptations --- */
 /* We need to adapt the game view to look good on this light background or give it a modal/overlay feel */
