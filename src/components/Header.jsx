@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <header className="main-header">
             <Link to="/" className="logo">
-                <img src="/images/logo-danang.svg" alt="Logo Đà Nẵng" className="logo-image" />
+                <img src={`${import.meta.env.BASE_URL}images/logo-danang.jpg.jpg`} alt="Logo Đà Nẵng" className="logo-image" />
                 <h1>ĐÀ NẴNG QUÊ HƯƠNG EM</h1>
             </Link>
             <nav>

@@ -59,13 +59,12 @@ const Doremon = () => {
             </div>
             
             <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#e0f2f1', borderRadius: '15px', textAlign: 'left', maxWidth: '800px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
-                <h3 style={{ marginTop: 0, color: '#00695c' }}>💡 Hướng dẫn cập nhật hình ảnh của bạn:</h3>
-                <p>Tôi đã thiết lập khung sách lật với 9 trang. Để hình ảnh của bạn hiện lên, bạn chỉ cần:</p>
-                <ol style={{ lineHeight: '1.8' }}>
-                    <li>Đổi tên 9 bức ảnh của bạn thành <strong>page1.jpg, page2.jpg, ... page9.jpg</strong>.</li>
-                    <li>Chép các ảnh này vào thư mục <strong>public/images/doremon/</strong> trong mã nguồn hiện tại của bạn. (Tôi đã tạo sẵn thư mục đó rồi).</li>
-                    <li>Ảnh của bạn sẽ tự động thay thế các trang chữ mặc định này!</li>
-                </ol>
+                <h3 style={{ marginTop: 0, color: '#00695c' }}>💡 Hướng dẫn đọc truyện:</h3>
+                <p>Cùng Doremon và những người bạn khám phá bài học qua từng trang sách nhé!</p>
+                <ul style={{ lineHeight: '1.8', margin: '10px 0', paddingLeft: '20px' }}>
+                    <li><strong>Lật trang:</strong> Nhấn vào mép phải hoặc vuốt sang trái để đọc tiếp.</li>
+                    <li><strong>Quay lại:</strong> Nhấn vào mép trái hoặc vuốt sang phải để đọc lại.</li>
+                </ul>
             </div>
         </div>
     );
