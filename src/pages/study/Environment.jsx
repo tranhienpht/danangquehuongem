@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Leaf, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { environmentData } from '../../data/environmentData';
@@ -6,6 +6,17 @@ import '../../pages/History.css';
 import './Environment.css';
 
 const Environment = () => {
+    const bannerImages = environmentData.map(item => item.image);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
+        }, 10000); // 10 seconds
+
+        return () => clearInterval(timer);
+    }, [bannerImages.length]);
+
     return (
         <div className="history-page textbook-style">
             <div className="textbook-container" style={{ maxWidth: '1200px' }}>
@@ -13,6 +24,28 @@ const Environment = () => {
                     <h1>Bảo vệ Môi trường</h1>
                     <p>Cùng chung tay xây dựng Đà Nẵng - Thành phố môi trường</p>
                 </header>
+
+                <section className="env-banner-slider-container">
+                    <div className="env-banner-slider">
+                        {bannerImages.map((img, index) => (
+                            <img
+                                key={index}
+                                src={`/${img}`}
+                                alt={`Bảo vệ môi trường ${index + 1}`}
+                                className={`env-banner-image ${index === currentImageIndex ? 'active' : ''}`}
+                            />
+                        ))}
+                    </div>
+                    <div className="env-slider-indicators">
+                        {bannerImages.map((_, index) => (
+                            <span 
+                                key={index} 
+                                className={`env-indicator ${index === currentImageIndex ? 'active' : ''}`}
+                                onClick={() => setCurrentImageIndex(index)}
+                            ></span>
+                        ))}
+                    </div>
+                </section>
 
                 <section className="learning-objectives box-shadow-green" style={{ marginBottom: '3rem' }}>
                     <div className="objective-title-env">

@@ -38,10 +38,13 @@ const Chatbot = () => {
         // Add Festivals
         context += "Lễ hội:\n";
         if (festivalsData.national) {
-            festivalsData.national.forEach(f => context += `- ${f.name}: ${f.description}\n`);
+            festivalsData.national.forEach(f => context += `- ${f.name}: Diễn ra vào ${f.time} tại ${f.location}. ${f.description}\n`);
         }
         if (festivalsData.provincial) {
-            festivalsData.provincial.forEach(f => context += `- ${f.name}: ${f.description}\n`);
+            festivalsData.provincial.forEach(f => context += `- ${f.name}: Diễn ra vào ${f.time} tại ${f.location}. ${f.description}\n`);
+        }
+        if (festivalsData.quangnam) {
+            festivalsData.quangnam.forEach(f => context += `- ${f.name}: Diễn ra vào ${f.time} tại ${f.location}. ${f.description}\n`);
         }
 
         // Add History
