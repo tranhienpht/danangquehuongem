@@ -41,7 +41,7 @@ const EnvironmentDetail = () => {
                 </header>
 
                 <div className="env-hero-image-container box-shadow-green">
-                    <img src={envItem.image} alt={envItem.name} className="env-hero-image" />
+                    <img src={`/${envItem.image}`} alt={envItem.name} className="env-hero-image" />
                 </div>
 
                 <div className="env-message-quote box-shadow-green">
@@ -61,6 +61,18 @@ const EnvironmentDetail = () => {
                             <h4 className="env-box-title">Thực trạng & Trách nhiệm</h4>
                         </div>
                         <p className="paragraph-text mb-0">{envItem.whyMatters}</p>
+                    </div>
+                    
+                    <div className="env-secondary-image-container mt-6">
+                        <img 
+                            src={`/${envItem.secondaryImage}`} 
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = `/${envItem.image}`;
+                            }}
+                            alt={`${envItem.name} minh họa thực trạng`} 
+                            className="env-secondary-image box-shadow-green" 
+                        />
                     </div>
                 </section>
 

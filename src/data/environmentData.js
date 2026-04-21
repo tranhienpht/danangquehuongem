@@ -4,6 +4,7 @@ export const environmentData = [
         name: 'Bảo vệ Môi trường chung',
         type: 'Hành động xanh',
         image: 'images/environment/bao ve moi truong chung.jpg', 
+        secondaryImage: 'images/environment/thuc-trang-moi-truong-chung.jpg',
         shortDescription: 'Cùng chung tay giữ gìn sự Xanh - Sạch - Đẹp cho trường học, đường phố và nơi em sinh sống.',
         whyMatters: 'Môi trường sống sạch sẽ giúp chúng ta có sức khỏe tốt, ngăn ngừa dịch bệnh và tạo ra không gian sống tươi đẹp. Nếu vứt rác bừa bãi, môi trường sẽ bị ô nhiễm, gây hại cho cả con người và thiên nhiên.',
         actions: [
@@ -19,6 +20,7 @@ export const environmentData = [
         name: 'Bảo vệ Môi trường Biển',
         type: 'Đại dương xanh',
         image: 'images/environment/bao ve moi truong bien.jpg',
+        secondaryImage: 'images/environment/thuc-trang-moi-truong-bien.jpg',
         shortDescription: 'Biển là món quà vô giá của Đà Nẵng. Hãy bảo vệ bãi biển quê hương khỏi vấn nạn rác thải.',
         whyMatters: 'Đà Nẵng tự hào có những bãi biển đẹp nhất hành tinh (như Mỹ Khê, Non Nước). Tuy nhiên, rác thải nhựa đại dương đang đe dọa sinh vật biển như rùa, cá, và làm mất đi vẻ đẹp của biển xanh.',
         actions: [
@@ -34,6 +36,7 @@ export const environmentData = [
         name: 'Bảo vệ Voọc Chà vá chân nâu',
         type: 'Bảo vệ Động vật',
         image: 'images/environment/bao ve vooc-cha-va-chan-nau.jpg',
+        secondaryImage: 'images/environment/thuc-trang-vooc.jpg',
         shortDescription: 'Chung tay bảo vệ "Nữ hoàng linh trưởng" - biểu tượng độc đáo của Bán đảo Sơn Trà.',
         whyMatters: 'Voọc chà vá chân nâu là loài linh trưởng đặc hữu vô cùng quý hiếm, được mệnh danh là nữ hoàng linh trưởng trên thế giới. Bán đảo Sơn Trà của Đà Nẵng là ngôi nhà tuyệt vời của chúng, nhưng hiện nay chúng đang bị đe dọa bởi nạn săn bắt và thu hẹp môi trường sống.',
         actions: [
@@ -49,6 +52,7 @@ export const environmentData = [
         name: 'Bảo vệ Môi trường Di sản',
         type: 'Bảo tồn Văn hóa',
         image: 'images/environment/bao ve moi truong di san.jpg',
+        secondaryImage: 'images/environment/thuc-trang-di-san.jpg',
         shortDescription: 'Trân trọng và gìn giữ vẻ đẹp nguyên vẹn của các di sản lịch sử như Hội An, Mỹ Sơn, Ngũ Hành Sơn.',
         whyMatters: 'Các di sản là kết tinh của lịch sử hàng trăm, hàng ngàn năm do cha ông truyền lại. Nếu môi trường quanh di sản bị rác thải bủa vây, hay các bức vách cổ bị tô vẽ bậy, giá trị văn hóa và sự trân trọng lịch sử sẽ bị tổn thương.',
         actions: [
@@ -64,6 +68,7 @@ export const environmentData = [
         name: 'Giáo dục STEM & Tái chế',
         type: 'Sáng tạo xanh',
         image: 'images/environment/stem & tai che.jpg',
+        secondaryImage: 'images/environment/thuc-trang-stem.jpg',
         shortDescription: 'Ứng dụng kiến thức STEM để sáng tạo các sản phẩm tái chế hữu ích, đem lại cuộc sống mới cho rác thải sinh hoạt.',
         whyMatters: 'Rác thải nhựa và vật liệu khó phân hủy nếu bị vứt bỏ sẽ làm ô nhiễm môi trường nghiêm trọng. Tuy nhiên, nếu biết cách tận dụng thông qua STEM (Khoa học, Công nghệ, Kỹ thuật, Toán học), chúng ta có thể biến rác thải thành những đồ dùng học tập, đồ chơi và mô hình khoa học giá trị, đồng thời rèn luyện tư duy sáng tạo.',
         actions: [
